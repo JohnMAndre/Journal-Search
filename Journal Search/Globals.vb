@@ -14,8 +14,7 @@ Module Globals
         AllColumns
         JournalName
         Publisher
-        ISSN1
-        ISSN2
+        ISSNs
         Source
         Ranking
         Rating

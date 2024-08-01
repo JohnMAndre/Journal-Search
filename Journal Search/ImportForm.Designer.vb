@@ -29,16 +29,15 @@ Partial Class ImportForm
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CopyColumnsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PasteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.txtSourceToDelete = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.dgvData = New System.Windows.Forms.DataGridView()
-        Me.CopyColumnsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.JournalNameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -102,10 +101,16 @@ Partial Class ImportForm
         Me.EditToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
         Me.EditToolStripMenuItem.Text = "&Edit"
         '
+        'CopyColumnsToolStripMenuItem
+        '
+        Me.CopyColumnsToolStripMenuItem.Name = "CopyColumnsToolStripMenuItem"
+        Me.CopyColumnsToolStripMenuItem.Size = New System.Drawing.Size(151, 22)
+        Me.CopyColumnsToolStripMenuItem.Text = "&Copy columns"
+        '
         'PasteToolStripMenuItem
         '
         Me.PasteToolStripMenuItem.Name = "PasteToolStripMenuItem"
-        Me.PasteToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.PasteToolStripMenuItem.Size = New System.Drawing.Size(151, 22)
         Me.PasteToolStripMenuItem.Text = "&Paste"
         '
         'Label2
@@ -145,7 +150,7 @@ Partial Class ImportForm
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvData.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.JournalNameColumn, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column11, Me.Column1})
+        Me.dgvData.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.JournalNameColumn, Me.Column2, Me.Column3, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column11, Me.Column1})
         Me.dgvData.Location = New System.Drawing.Point(13, 74)
         Me.dgvData.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvData.Name = "dgvData"
@@ -153,18 +158,13 @@ Partial Class ImportForm
         Me.dgvData.Size = New System.Drawing.Size(1256, 230)
         Me.dgvData.TabIndex = 10
         '
-        'CopyColumnsToolStripMenuItem
-        '
-        Me.CopyColumnsToolStripMenuItem.Name = "CopyColumnsToolStripMenuItem"
-        Me.CopyColumnsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.CopyColumnsToolStripMenuItem.Text = "&Copy columns"
-        '
         'JournalNameColumn
         '
         Me.JournalNameColumn.DataPropertyName = "JournalName"
         Me.JournalNameColumn.HeaderText = "Journal name"
         Me.JournalNameColumn.Name = "JournalNameColumn"
         Me.JournalNameColumn.ReadOnly = True
+        Me.JournalNameColumn.Width = 150
         '
         'Column2
         '
@@ -175,17 +175,10 @@ Partial Class ImportForm
         '
         'Column3
         '
-        Me.Column3.DataPropertyName = "ISSN1"
-        Me.Column3.HeaderText = "ISSN1"
+        Me.Column3.DataPropertyName = "ISSNs"
+        Me.Column3.HeaderText = "ISSNs"
         Me.Column3.Name = "Column3"
         Me.Column3.ReadOnly = True
-        '
-        'Column4
-        '
-        Me.Column4.DataPropertyName = "ISSN2"
-        Me.Column4.HeaderText = "ISSN2"
-        Me.Column4.Name = "Column4"
-        Me.Column4.ReadOnly = True
         '
         'Column5
         '
@@ -283,7 +276,6 @@ Partial Class ImportForm
     Friend WithEvents JournalNameColumn As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents Column3 As DataGridViewTextBoxColumn
-    Friend WithEvents Column4 As DataGridViewTextBoxColumn
     Friend WithEvents Column5 As DataGridViewTextBoxColumn
     Friend WithEvents Column6 As DataGridViewTextBoxColumn
     Friend WithEvents Column7 As DataGridViewTextBoxColumn
