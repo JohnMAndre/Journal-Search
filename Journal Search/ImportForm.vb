@@ -74,7 +74,7 @@
 
 
                 m_lstTemp.Add(obj)
-                Me.Text = "Import Data (" & intCounter.ToString("#,##0") & ")"
+                Me.Text = "Import Data (pasting " & intCounter.ToString("#,##0") & " of " & strRows.Count.ToString("#,##0") & ")"
                 txtSourceToDelete.Text = obj.Source
                 Application.DoEvents()
             Next
