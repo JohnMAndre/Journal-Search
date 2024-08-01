@@ -122,6 +122,7 @@ Public Class MainForm
             element1.SetAttribute("HIndex", obj.HIndex)
             element1.SetAttribute("Country", obj.Country)
             element1.SetAttribute("Categories", obj.Categories)
+            element1.SetAttribute("Areas", obj.Areas)
 
             root1.AppendChild(element1)
 
@@ -198,8 +199,7 @@ Public Class MainForm
                     End If
 
                     If str.Length > 4 Then
-                        lblStatusLabel1.Text = "Queries over four words are
-treated as a phrase"
+                        lblStatusLabel1.Text = "Queries over four words are treated as a phrase"
                     End If
 
                     Select Case str.Length
@@ -209,13 +209,15 @@ treated as a phrase"
                             If chkAllColumns.Checked Then
                                 If chkPartialMatch.Checked Then
                                     lstFiltered = JournalList.Where(Function(x) x.JournalName.ToLower.Contains(strSearchFor) OrElse
-                                                                x.PublisherName.ToLower.Contains(strSearchFor) OrElse
-                                                                x.ISSN1.ToLower.Contains(strSearchFor) OrElse
-                                                                x.ISSN2.ToLower.Contains(strSearchFor) OrElse
-                                                                x.Source.ToLower.Contains(strSearchFor) OrElse
-                                                                x.Categories.ToLower.Contains(strSearchFor) OrElse
-                                                                x.Rating.ToLower.Contains(strSearchFor) OrElse
-                                                                x.Country.ToLower.Contains(strSearchFor)).ToList()
+                                                                                x.PublisherName.ToLower.Contains(strSearchFor) OrElse
+                                                                                x.ISSN1.ToLower.Contains(strSearchFor) OrElse
+                                                                                x.ISSN2.ToLower.Contains(strSearchFor) OrElse
+                                                                                x.Source.ToLower.Contains(strSearchFor) OrElse
+                                                                                x.Categories.ToLower.Contains(strSearchFor) OrElse
+                                                                                x.Areas.ToLower.Contains(strSearchFor) OrElse
+                                                                                x.Notes.ToLower.Contains(strSearchFor) OrElse
+                                                                                x.Rating.ToLower.Contains(strSearchFor) OrElse
+                                                                                x.Country.ToLower.Contains(strSearchFor)).ToList()
                                 Else
                                     lstFiltered = JournalList.Where(Function(x) x.JournalName.ToLower() = strSearchFor OrElse
                                                                 x.PublisherName.ToLower() = strSearchFor OrElse
@@ -223,6 +225,8 @@ treated as a phrase"
                                                                 x.ISSN2.ToLower() = strSearchFor OrElse
                                                                 x.Source.ToLower() = strSearchFor OrElse
                                                                 x.Categories.ToLower() = strSearchFor OrElse
+                                                                x.Areas.ToLower() = strSearchFor OrElse
+                                                                x.Notes.ToLower() = strSearchFor OrElse
                                                                 x.Rating.ToLower() = strSearchFor OrElse
                                                                 x.Country.ToLower() = strSearchFor).ToList()
                                 End If
@@ -242,6 +246,8 @@ treated as a phrase"
                                                                x.ISSN2.ToLower.Contains(strSearchFor) OrElse
                                                                x.Source.ToLower.Contains(strSearchFor) OrElse
                                                                x.Categories.ToLower.Contains(strSearchFor) OrElse
+                                                               x.Areas.ToLower.Contains(strSearchFor) OrElse
+                                                               x.Notes.ToLower.Contains(strSearchFor) OrElse
                                                                x.Rating.ToLower.Contains(strSearchFor) OrElse
                                                                x.Country.ToLower.Contains(strSearchFor)) AndAlso
                                                                 (x.JournalName.ToLower.Contains(strSearchFor2) OrElse
@@ -250,6 +256,8 @@ treated as a phrase"
                                                                x.ISSN2.ToLower.Contains(strSearchFor2) OrElse
                                                                x.Source.ToLower.Contains(strSearchFor2) OrElse
                                                                x.Categories.ToLower.Contains(strSearchFor2) OrElse
+                                                               x.Areas.ToLower.Contains(strSearchFor2) OrElse
+                                                               x.Notes.ToLower.Contains(strSearchFor2) OrElse
                                                                x.Rating.ToLower.Contains(strSearchFor2) OrElse
                                                                x.Country.ToLower.Contains(strSearchFor2))).ToList()
                                 Else
@@ -259,6 +267,8 @@ treated as a phrase"
                                                                x.ISSN2.ToLower() = strSearchFor OrElse
                                                                x.Source.ToLower() = strSearchFor OrElse
                                                                x.Categories.ToLower() = strSearchFor OrElse
+                                                               x.Areas.ToLower() = strSearchFor OrElse
+                                                               x.Notes.ToLower() = strSearchFor OrElse
                                                                x.Rating.ToLower() = strSearchFor OrElse
                                                                x.Country.ToLower() = strSearchFor) AndAlso
                                                                 (x.JournalName.ToLower() = strSearchFor2 OrElse
@@ -267,6 +277,8 @@ treated as a phrase"
                                                                x.ISSN2.ToLower() = strSearchFor2 OrElse
                                                                x.Source.ToLower() = strSearchFor2 OrElse
                                                                x.Categories.ToLower() = strSearchFor2 OrElse
+                                                               x.Areas.ToLower() = strSearchFor2 OrElse
+                                                               x.Notes.ToLower() = strSearchFor2 OrElse
                                                                x.Rating.ToLower() = strSearchFor2 OrElse
                                                                x.Country.ToLower() = strSearchFor2)).ToList()
                                 End If
@@ -290,6 +302,8 @@ treated as a phrase"
                                                               x.ISSN2.ToLower.Contains(strSearchFor) OrElse
                                                               x.Source.ToLower.Contains(strSearchFor) OrElse
                                                               x.Categories.ToLower.Contains(strSearchFor) OrElse
+                                                              x.Areas.ToLower.Contains(strSearchFor) OrElse
+                                                              x.Notes.ToLower.Contains(strSearchFor) OrElse
                                                               x.Rating.ToLower.Contains(strSearchFor) OrElse
                                                               x.Country.ToLower.Contains(strSearchFor)) AndAlso
                                                                (x.JournalName.ToLower.Contains(strSearchFor2) OrElse
@@ -298,6 +312,8 @@ treated as a phrase"
                                                               x.ISSN2.ToLower.Contains(strSearchFor2) OrElse
                                                               x.Source.ToLower.Contains(strSearchFor2) OrElse
                                                               x.Categories.ToLower.Contains(strSearchFor2) OrElse
+                                                              x.Areas.ToLower.Contains(strSearchFor2) OrElse
+                                                              x.Notes.ToLower.Contains(strSearchFor2) OrElse
                                                               x.Rating.ToLower.Contains(strSearchFor2) OrElse
                                                               x.Country.ToLower.Contains(strSearchFor2)) AndAlso
                                                                (x.JournalName.ToLower.Contains(strSearchFor3) OrElse
@@ -306,6 +322,8 @@ treated as a phrase"
                                                               x.ISSN2.ToLower.Contains(strSearchFor3) OrElse
                                                               x.Source.ToLower.Contains(strSearchFor3) OrElse
                                                               x.Categories.ToLower.Contains(strSearchFor3) OrElse
+                                                              x.Areas.ToLower.Contains(strSearchFor3) OrElse
+                                                              x.Notes.ToLower.Contains(strSearchFor3) OrElse
                                                               x.Rating.ToLower.Contains(strSearchFor3) OrElse
                                                               x.Country.ToLower.Contains(strSearchFor3))).ToList()
                                 Else
@@ -315,6 +333,8 @@ treated as a phrase"
                                                               x.ISSN2.ToLower() = strSearchFor OrElse
                                                               x.Source.ToLower() = strSearchFor OrElse
                                                               x.Categories.ToLower() = strSearchFor OrElse
+                                                              x.Areas.ToLower() = strSearchFor OrElse
+                                                              x.Notes.ToLower() = strSearchFor OrElse
                                                               x.Rating.ToLower() = strSearchFor OrElse
                                                               x.Country.ToLower() = strSearchFor) AndAlso
                                                                (x.JournalName.ToLower() = strSearchFor2 OrElse
@@ -331,6 +351,8 @@ treated as a phrase"
                                                               x.ISSN2.ToLower() = strSearchFor3 OrElse
                                                               x.Source.ToLower() = strSearchFor3 OrElse
                                                               x.Categories.ToLower() = strSearchFor3 OrElse
+                                                              x.Areas.ToLower() = strSearchFor3 OrElse
+                                                              x.Notes.ToLower() = strSearchFor3 OrElse
                                                               x.Rating.ToLower() = strSearchFor3 OrElse
                                                               x.Country.ToLower() = strSearchFor3)).ToList()
                                 End If
@@ -355,6 +377,8 @@ treated as a phrase"
                                                               x.ISSN2.ToLower.Contains(strSearchFor) OrElse
                                                               x.Source.ToLower.Contains(strSearchFor) OrElse
                                                               x.Categories.ToLower.Contains(strSearchFor) OrElse
+                                                              x.Areas.ToLower.Contains(strSearchFor) OrElse
+                                                              x.Notes.ToLower.Contains(strSearchFor) OrElse
                                                               x.Rating.ToLower.Contains(strSearchFor) OrElse
                                                               x.Country.ToLower.Contains(strSearchFor)) AndAlso
                                                                (x.JournalName.ToLower.Contains(strSearchFor2) OrElse
@@ -363,6 +387,8 @@ treated as a phrase"
                                                               x.ISSN2.ToLower.Contains(strSearchFor2) OrElse
                                                               x.Source.ToLower.Contains(strSearchFor2) OrElse
                                                               x.Categories.ToLower.Contains(strSearchFor2) OrElse
+                                                              x.Areas.ToLower.Contains(strSearchFor2) OrElse
+                                                              x.Notes.ToLower.Contains(strSearchFor2) OrElse
                                                               x.Rating.ToLower.Contains(strSearchFor2) OrElse
                                                               x.Country.ToLower.Contains(strSearchFor2)) AndAlso
                                                                (x.JournalName.ToLower.Contains(strSearchFor3) OrElse
@@ -371,6 +397,8 @@ treated as a phrase"
                                                               x.ISSN2.ToLower.Contains(strSearchFor3) OrElse
                                                               x.Source.ToLower.Contains(strSearchFor3) OrElse
                                                               x.Categories.ToLower.Contains(strSearchFor3) OrElse
+                                                              x.Areas.ToLower.Contains(strSearchFor3) OrElse
+                                                              x.Notes.ToLower.Contains(strSearchFor3) OrElse
                                                               x.Rating.ToLower.Contains(strSearchFor3) OrElse
                                                               x.Country.ToLower.Contains(strSearchFor3)) AndAlso
                                                                (x.JournalName.ToLower.Contains(strSearchFor4) OrElse
@@ -379,6 +407,8 @@ treated as a phrase"
                                                               x.ISSN2.ToLower.Contains(strSearchFor4) OrElse
                                                               x.Source.ToLower.Contains(strSearchFor4) OrElse
                                                               x.Categories.ToLower.Contains(strSearchFor4) OrElse
+                                                              x.Areas.ToLower.Contains(strSearchFor4) OrElse
+                                                              x.Notes.ToLower.Contains(strSearchFor4) OrElse
                                                               x.Rating.ToLower.Contains(strSearchFor4) OrElse
                                                               x.Country.ToLower.Contains(strSearchFor4))).ToList()
                                 Else
@@ -388,6 +418,8 @@ treated as a phrase"
                                                               x.ISSN2.ToLower() = strSearchFor OrElse
                                                               x.Source.ToLower() = strSearchFor OrElse
                                                               x.Categories.ToLower() = strSearchFor OrElse
+                                                              x.Areas.ToLower() = strSearchFor OrElse
+                                                              x.Notes.ToLower() = strSearchFor OrElse
                                                               x.Rating.ToLower() = strSearchFor OrElse
                                                               x.Country.ToLower() = strSearchFor) AndAlso
                                                                (x.JournalName.ToLower() = strSearchFor2 OrElse
@@ -396,6 +428,8 @@ treated as a phrase"
                                                               x.ISSN2.ToLower() = strSearchFor2 OrElse
                                                               x.Source.ToLower() = strSearchFor2 OrElse
                                                               x.Categories.ToLower() = strSearchFor2 OrElse
+                                                              x.Areas.ToLower() = strSearchFor2 OrElse
+                                                              x.Notes.ToLower() = strSearchFor2 OrElse
                                                               x.Rating.ToLower() = strSearchFor2 OrElse
                                                               x.Country.ToLower() = strSearchFor2) AndAlso
                                                                (x.JournalName.ToLower() = strSearchFor3 OrElse
@@ -404,6 +438,8 @@ treated as a phrase"
                                                               x.ISSN2.ToLower() = strSearchFor3 OrElse
                                                               x.Source.ToLower() = strSearchFor3 OrElse
                                                               x.Categories.ToLower() = strSearchFor3 OrElse
+                                                              x.Areas.ToLower() = strSearchFor3 OrElse
+                                                              x.Notes.ToLower() = strSearchFor3 OrElse
                                                               x.Rating.ToLower() = strSearchFor3 OrElse
                                                               x.Country.ToLower() = strSearchFor3) AndAlso
                                                                (x.JournalName.ToLower() = strSearchFor4 OrElse
@@ -412,6 +448,8 @@ treated as a phrase"
                                                               x.ISSN2.ToLower() = strSearchFor4 OrElse
                                                               x.Source.ToLower() = strSearchFor4 OrElse
                                                               x.Categories.ToLower() = strSearchFor4 OrElse
+                                                              x.Areas.ToLower() = strSearchFor4 OrElse
+                                                              x.Notes.ToLower() = strSearchFor4 OrElse
                                                               x.Rating.ToLower() = strSearchFor4 OrElse
                                                               x.Country.ToLower() = strSearchFor4)).ToList()
                                 End If
@@ -441,6 +479,8 @@ treated as a phrase"
                                                                     x.ISSN2.ToLower.Contains(strSearchFor) OrElse
                                                                     x.Source.ToLower.Contains(strSearchFor) OrElse
                                                                     x.Categories.ToLower.Contains(strSearchFor) OrElse
+                                                                    x.Areas.ToLower.Contains(strSearchFor) OrElse
+                                                                    x.Notes.ToLower.Contains(strSearchFor) OrElse
                                                                     x.Rating.ToLower.Contains(strSearchFor) OrElse
                                                                     x.Country.ToLower.Contains(strSearchFor)).ToList()
                                 Else
@@ -450,6 +490,8 @@ treated as a phrase"
                                                                     x.ISSN2.ToLower() = strSearchFor OrElse
                                                                     x.Source.ToLower() = strSearchFor OrElse
                                                                     x.Categories.ToLower() = strSearchFor OrElse
+                                                                    x.Areas.ToLower() = strSearchFor OrElse
+                                                                    x.Notes.ToLower() = strSearchFor OrElse
                                                                     x.Rating.ToLower() = strSearchFor OrElse
                                                                     x.Country.ToLower() = strSearchFor).ToList()
                                 End If
@@ -474,6 +516,8 @@ treated as a phrase"
                                                                         x.ISSN2.ToLower.Contains(strSearchFor) OrElse
                                                                         x.Source.ToLower.Contains(strSearchFor) OrElse
                                                                         x.Categories.ToLower.Contains(strSearchFor) OrElse
+                                                                        x.Areas.ToLower.Contains(strSearchFor) OrElse
+                                                                        x.Notes.ToLower.Contains(strSearchFor) OrElse
                                                                         x.Rating.ToLower.Contains(strSearchFor) OrElse
                                                                         x.Country.ToLower.Contains(strSearchFor)).ToList()
                         Else
@@ -483,6 +527,8 @@ treated as a phrase"
                                                                         x.ISSN2.ToLower() = strSearchFor OrElse
                                                                         x.Source.ToLower() = strSearchFor OrElse
                                                                         x.Categories.ToLower() = strSearchFor OrElse
+                                                                        x.Areas.ToLower() = strSearchFor OrElse
+                                                                        x.Notes.ToLower() = strSearchFor OrElse
                                                                         x.Rating.ToLower() = strSearchFor OrElse
                                                                         x.Country.ToLower() = strSearchFor).ToList()
                         End If
@@ -596,6 +642,8 @@ treated as a phrase"
                         cmp = New EntryCompareByCountry
                     Case "Categories"
                         cmp = New EntryCompareByCategories
+                    Case "Areas"
+                        cmp = New EntryCompareByAreas
                     Case "Notes"
                         cmp = New EntryCompareByNotes
                     Case Else

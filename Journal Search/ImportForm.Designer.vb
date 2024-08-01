@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class ImportForm
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class ImportForm
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ImportForm))
         Me.btnImport = New System.Windows.Forms.Button()
@@ -44,6 +44,8 @@ Partial Class ImportForm
         Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CopyColumnsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.dgvData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -51,7 +53,7 @@ Partial Class ImportForm
         'btnImport
         '
         Me.btnImport.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.btnImport.Location = New System.Drawing.Point(496, 342)
+        Me.btnImport.Location = New System.Drawing.Point(544, 342)
         Me.btnImport.Margin = New System.Windows.Forms.Padding(4)
         Me.btnImport.Name = "btnImport"
         Me.btnImport.Size = New System.Drawing.Size(80, 28)
@@ -66,7 +68,7 @@ Partial Class ImportForm
         Me.Label1.Location = New System.Drawing.Point(12, 31)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(1059, 39)
+        Me.Label1.Size = New System.Drawing.Size(1155, 39)
         Me.Label1.TabIndex = 5
         Me.Label1.Text = resources.GetString("Label1.Text")
         '
@@ -75,7 +77,7 @@ Partial Class ImportForm
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(1087, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1183, 24)
         Me.MenuStrip1.TabIndex = 6
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -94,7 +96,7 @@ Partial Class ImportForm
         '
         'EditToolStripMenuItem
         '
-        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PasteToolStripMenuItem})
+        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CopyColumnsToolStripMenuItem, Me.PasteToolStripMenuItem})
         Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
         Me.EditToolStripMenuItem.Size = New System.Drawing.Size(39, 20)
         Me.EditToolStripMenuItem.Text = "&Edit"
@@ -142,12 +144,12 @@ Partial Class ImportForm
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvData.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10})
+        Me.dgvData.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column11})
         Me.dgvData.Location = New System.Drawing.Point(13, 74)
         Me.dgvData.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvData.Name = "dgvData"
         Me.dgvData.ReadOnly = True
-        Me.dgvData.Size = New System.Drawing.Size(1061, 230)
+        Me.dgvData.Size = New System.Drawing.Size(1157, 230)
         Me.dgvData.TabIndex = 10
         '
         'Column1
@@ -220,11 +222,24 @@ Partial Class ImportForm
         Me.Column10.Name = "Column10"
         Me.Column10.ReadOnly = True
         '
+        'Column11
+        '
+        Me.Column11.DataPropertyName = "Areas"
+        Me.Column11.HeaderText = "Areas"
+        Me.Column11.Name = "Column11"
+        Me.Column11.ReadOnly = True
+        '
+        'CopyColumnsToolStripMenuItem
+        '
+        Me.CopyColumnsToolStripMenuItem.Name = "CopyColumnsToolStripMenuItem"
+        Me.CopyColumnsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CopyColumnsToolStripMenuItem.Text = "&Copy columns"
+        '
         'ImportForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1087, 383)
+        Me.ClientSize = New System.Drawing.Size(1183, 383)
         Me.Controls.Add(Me.dgvData)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
@@ -266,4 +281,6 @@ Partial Class ImportForm
     Friend WithEvents Column8 As DataGridViewTextBoxColumn
     Friend WithEvents Column9 As DataGridViewTextBoxColumn
     Friend WithEvents Column10 As DataGridViewTextBoxColumn
+    Friend WithEvents Column11 As DataGridViewTextBoxColumn
+    Friend WithEvents CopyColumnsToolStripMenuItem As ToolStripMenuItem
 End Class

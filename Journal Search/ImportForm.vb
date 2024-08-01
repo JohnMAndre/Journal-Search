@@ -62,6 +62,9 @@
                 If row.Length >= 10 Then
                     obj.Categories = row(9).Trim()
                 End If
+                If row.Length >= 10 Then
+                    obj.Areas = row(10).Trim()
+                End If
 
 
                 m_lstTemp.Add(obj)
@@ -114,4 +117,17 @@
         End Try
 
     End Sub
+
+    Private Sub CopyColumnsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CopyColumnsToolStripMenuItem.Click
+        Clipboard.SetText(GetColumnHeaderTexts)
+    End Sub
+    Private Function GetColumnHeaderTexts() As String
+        Dim strReturn As String = String.Empty
+        For Each col As DataGridViewColumn In dgvData.Columns
+            strReturn &= col.HeaderText & vbTab
+        Next
+
+        strReturn = strReturn.Substring(0, strReturn.Length - 1)
+        Return strReturn
+    End Function
 End Class

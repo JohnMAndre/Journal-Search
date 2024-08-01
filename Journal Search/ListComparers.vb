@@ -69,6 +69,13 @@ Public Class EntryCompareByCategories
         Return x.Categories.CompareTo(y.Categories)
     End Function
 End Class
+Public Class EntryCompareByAreas
+    Implements IComparer(Of Entry)
+
+    Public Function Compare(x As Entry, y As Entry) As Integer Implements IComparer(Of Entry).Compare
+        Return x.Areas.CompareTo(y.Areas)
+    End Function
+End Class
 Public Class EntryCompareByNotes
     Implements IComparer(Of Entry)
 
