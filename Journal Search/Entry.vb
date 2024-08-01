@@ -5,8 +5,7 @@ Public Class Entry
         Application.DoEvents()
         Me.JournalName = xElement.GetAttribute("JournalName")
         Me.PublisherName = xElement.GetAttribute("PublisherName")
-        Me.ISSN1 = xElement.GetAttribute("ISSN1")
-        Me.ISSN2 = xElement.GetAttribute("ISSN2")
+        Me.ISSNs = xElement.GetAttribute("ISSNs")
         Me.Source = xElement.GetAttribute("Source")
         Me.Ranking = xElement.GetAttribute("Ranking")
         Me.Rating = xElement.GetAttribute("Rating")
@@ -21,8 +20,7 @@ Public Class Entry
     End Sub
     Public Property JournalName As String = String.Empty
     Public Property PublisherName As String = String.Empty
-    Public Property ISSN1 As String = String.Empty
-    Public Property ISSN2 As String = String.Empty
+    Public Property ISSNs As String = String.Empty
     Public Property Source As String = String.Empty
     Public Property Ranking As String = String.Empty
     Public Property Rating As String = String.Empty

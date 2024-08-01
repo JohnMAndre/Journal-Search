@@ -45,31 +45,28 @@
                     obj.PublisherName = row(1).Trim()
                 End If
                 If row.Length >= 3 Then
-                    obj.ISSN1 = row(2).Trim()
+                    obj.ISSNs = row(2).Trim()
                 End If
                 If row.Length >= 4 Then
-                    obj.ISSN2 = row(3).Trim()
+                    obj.Source = row(3).Trim()
                 End If
                 If row.Length >= 5 Then
-                    obj.Source = row(4).Trim()
+                    obj.Ranking = row(4).Trim()
                 End If
                 If row.Length >= 6 Then
-                    obj.Ranking = row(5).Trim()
+                    obj.Rating = row(5).Trim()
                 End If
                 If row.Length >= 7 Then
-                    obj.Rating = row(6).Trim()
+                    obj.HIndex = row(6).Trim()
                 End If
                 If row.Length >= 8 Then
-                    obj.HIndex = row(7).Trim()
+                    obj.Country = row(7).Trim()
                 End If
                 If row.Length >= 9 Then
-                    obj.Country = row(8).Trim()
+                    obj.Categories = row(8).Trim()
                 End If
                 If row.Length >= 10 Then
-                    obj.Categories = row(9).Trim()
-                End If
-                If row.Length >= 10 Then
-                    obj.Areas = row(10).Trim()
+                    obj.Areas = row(9).Trim()
                 End If
 
 

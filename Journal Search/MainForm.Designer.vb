@@ -38,7 +38,6 @@ Partial Class MainForm
         Me.AutosizeColumnsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MinisizeColumnsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.lblFilteredCount = New System.Windows.Forms.Label()
-        Me.chkAllColumns = New System.Windows.Forms.CheckBox()
         Me.chkPartialMatch = New System.Windows.Forms.CheckBox()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.lblStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
@@ -55,6 +54,7 @@ Partial Class MainForm
         Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NotesColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.cboFilterColumn = New System.Windows.Forms.ComboBox()
         CType(Me.dgvData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -185,24 +185,13 @@ Partial Class MainForm
         Me.lblFilteredCount.Size = New System.Drawing.Size(0, 16)
         Me.lblFilteredCount.TabIndex = 5
         '
-        'chkAllColumns
-        '
-        Me.chkAllColumns.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.chkAllColumns.AutoSize = True
-        Me.chkAllColumns.Location = New System.Drawing.Point(705, 45)
-        Me.chkAllColumns.Name = "chkAllColumns"
-        Me.chkAllColumns.Size = New System.Drawing.Size(94, 20)
-        Me.chkAllColumns.TabIndex = 6
-        Me.chkAllColumns.Text = "&All columns"
-        Me.chkAllColumns.UseVisualStyleBackColor = True
-        '
         'chkPartialMatch
         '
         Me.chkPartialMatch.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.chkPartialMatch.AutoSize = True
         Me.chkPartialMatch.Checked = True
         Me.chkPartialMatch.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.chkPartialMatch.Location = New System.Drawing.Point(816, 45)
+        Me.chkPartialMatch.Location = New System.Drawing.Point(683, 42)
         Me.chkPartialMatch.Name = "chkPartialMatch"
         Me.chkPartialMatch.Size = New System.Drawing.Size(103, 20)
         Me.chkPartialMatch.TabIndex = 6
@@ -311,14 +300,25 @@ Partial Class MainForm
         Me.NotesColumn.HeaderText = "Notes"
         Me.NotesColumn.Name = "NotesColumn"
         '
+        'cboFilterColumn
+        '
+        Me.cboFilterColumn.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cboFilterColumn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboFilterColumn.FormattingEnabled = True
+        Me.cboFilterColumn.Items.AddRange(New Object() {"(all columns)", "Journal name", "Publisher", "ISSN1", "ISSN2", "Source", "Ranking", "Rating", "H-Index", "Country", "Categories", "Areas", "Notes"})
+        Me.cboFilterColumn.Location = New System.Drawing.Point(791, 42)
+        Me.cboFilterColumn.Name = "cboFilterColumn"
+        Me.cboFilterColumn.Size = New System.Drawing.Size(140, 24)
+        Me.cboFilterColumn.TabIndex = 8
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1188, 574)
+        Me.Controls.Add(Me.cboFilterColumn)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.chkPartialMatch)
-        Me.Controls.Add(Me.chkAllColumns)
         Me.Controls.Add(Me.lblFilteredCount)
         Me.Controls.Add(Me.btnFilter)
         Me.Controls.Add(Me.Label1)
@@ -355,7 +355,6 @@ Partial Class MainForm
     Friend WithEvents AutosizeColumnsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ClearFilterToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MinisizeColumnsToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents chkAllColumns As CheckBox
     Friend WithEvents chkPartialMatch As CheckBox
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents lblStatusLabel1 As ToolStripStatusLabel
@@ -373,4 +372,5 @@ Partial Class MainForm
     Friend WithEvents Column10 As DataGridViewTextBoxColumn
     Friend WithEvents Column12 As DataGridViewTextBoxColumn
     Friend WithEvents NotesColumn As DataGridViewTextBoxColumn
+    Friend WithEvents cboFilterColumn As ComboBox
 End Class

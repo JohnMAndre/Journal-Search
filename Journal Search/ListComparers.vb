@@ -13,18 +13,11 @@ Public Class EntryCompareByPublisherName
         Return x.PublisherName.CompareTo(y.PublisherName)
     End Function
 End Class
-Public Class EntryCompareByISSN1
+Public Class EntryCompareByISSNs
     Implements IComparer(Of Entry)
 
     Public Function Compare(x As Entry, y As Entry) As Integer Implements IComparer(Of Entry).Compare
-        Return x.ISSN1.CompareTo(y.ISSN1)
-    End Function
-End Class
-Public Class EntryCompareByISSN2
-    Implements IComparer(Of Entry)
-
-    Public Function Compare(x As Entry, y As Entry) As Integer Implements IComparer(Of Entry).Compare
-        Return x.ISSN2.CompareTo(y.ISSN2)
+        Return x.ISSNs.CompareTo(y.ISSNs)
     End Function
 End Class
 Public Class EntryCompareBySource

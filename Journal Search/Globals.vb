@@ -9,6 +9,24 @@ Module Globals
     Public Const DISCONTINUED_IDENTIFIER As String = " (discontinued)"
 #End Region
 
+#Region " Enums "
+    Public Enum SearchColumnEnum
+        AllColumns
+        JournalName
+        Publisher
+        ISSN1
+        ISSN2
+        Source
+        Ranking
+        Rating
+        HIndex
+        Country
+        Categories
+        Areas
+        Notes
+    End Enum
+#End Region
+
 
     Public Sub AddNotesToJournals(journals As List(Of Entry))
         '--  add the notes from the notes file
