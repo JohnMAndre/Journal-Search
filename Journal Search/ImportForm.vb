@@ -75,6 +75,7 @@
 
                 m_lstTemp.Add(obj)
                 Me.Text = "Import Data (" & intCounter.ToString("#,##0") & ")"
+                txtSourceToDelete.Text = obj.Source
                 Application.DoEvents()
             Next
 
@@ -113,8 +114,12 @@
                 Next
             End If
 
+            Dim intCounter As Integer
             For Each obj As Entry In m_lstTemp
                 JournalList.Add(obj)
+                intCounter += 1
+                Me.Text = "Import Data (added " & intCounter.ToString("#,##0") & " out of " & m_lstTemp.Count.ToString("#,##0") & ")"
+                Application.DoEvents()
             Next
 
             Me.DialogResult = DialogResult.OK
