@@ -46,6 +46,7 @@ Partial Class ImportForm
         Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.dgvData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -53,7 +54,7 @@ Partial Class ImportForm
         'btnImport
         '
         Me.btnImport.Anchor = System.Windows.Forms.AnchorStyles.Bottom
-        Me.btnImport.Location = New System.Drawing.Point(544, 342)
+        Me.btnImport.Location = New System.Drawing.Point(594, 342)
         Me.btnImport.Margin = New System.Windows.Forms.Padding(4)
         Me.btnImport.Name = "btnImport"
         Me.btnImport.Size = New System.Drawing.Size(80, 28)
@@ -68,7 +69,7 @@ Partial Class ImportForm
         Me.Label1.Location = New System.Drawing.Point(12, 31)
         Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(1155, 39)
+        Me.Label1.Size = New System.Drawing.Size(1254, 39)
         Me.Label1.TabIndex = 5
         Me.Label1.Text = resources.GetString("Label1.Text")
         '
@@ -77,7 +78,7 @@ Partial Class ImportForm
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(1183, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1282, 24)
         Me.MenuStrip1.TabIndex = 6
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -104,7 +105,7 @@ Partial Class ImportForm
         'PasteToolStripMenuItem
         '
         Me.PasteToolStripMenuItem.Name = "PasteToolStripMenuItem"
-        Me.PasteToolStripMenuItem.Size = New System.Drawing.Size(102, 22)
+        Me.PasteToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.PasteToolStripMenuItem.Text = "&Paste"
         '
         'Label2
@@ -144,12 +145,12 @@ Partial Class ImportForm
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvData.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.JournalNameColumn, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column11})
+        Me.dgvData.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.JournalNameColumn, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column11, Me.Column1})
         Me.dgvData.Location = New System.Drawing.Point(13, 74)
         Me.dgvData.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvData.Name = "dgvData"
         Me.dgvData.ReadOnly = True
-        Me.dgvData.Size = New System.Drawing.Size(1157, 230)
+        Me.dgvData.Size = New System.Drawing.Size(1256, 230)
         Me.dgvData.TabIndex = 10
         '
         'CopyColumnsToolStripMenuItem
@@ -235,11 +236,18 @@ Partial Class ImportForm
         Me.Column11.Name = "Column11"
         Me.Column11.ReadOnly = True
         '
+        'Column1
+        '
+        Me.Column1.DataPropertyName = "Notes"
+        Me.Column1.HeaderText = "Notes"
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        '
         'ImportForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1183, 383)
+        Me.ClientSize = New System.Drawing.Size(1282, 383)
         Me.Controls.Add(Me.dgvData)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
@@ -283,4 +291,5 @@ Partial Class ImportForm
     Friend WithEvents Column9 As DataGridViewTextBoxColumn
     Friend WithEvents Column10 As DataGridViewTextBoxColumn
     Friend WithEvents Column11 As DataGridViewTextBoxColumn
+    Friend WithEvents Column1 As DataGridViewTextBoxColumn
 End Class

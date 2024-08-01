@@ -84,6 +84,9 @@
                 txtSourceToDelete.BackColor = Color.Yellow
             End If
 
+            '-- Add notes
+            AddNotesToJournals(m_lstTemp)
+
 
             '-- Add to DGV
             dgvData.AutoGenerateColumns = False

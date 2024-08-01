@@ -39,31 +39,33 @@ Public Class MainForm
 
         UpdateLoadingProgress()
 
-        '-- Now we must add the notes
-        If System.IO.File.Exists("JournalSearchDataExtra.xml") Then
-            xDoc.Load("JournalSearchDataExtra.xml")
-            xList = xDoc.SelectNodes("//JournalNote")
-            Dim strName As String
-            Dim strNotes As String
+        AddNotesToJournals(JournalList)
 
-            m_intCounter = 0
-            prgStatusBar.Maximum = xList.Count
+        ''-- Now we must add the notes
+        'If System.IO.File.Exists("JournalSearchDataExtra.xml") Then
+        '    xDoc.Load("JournalSearchDataExtra.xml")
+        '    xList = xDoc.SelectNodes("//JournalNote")
+        '    Dim strName As String
+        '    Dim strNotes As String
 
-            For Each xElement As XmlElement In xList
-                m_intCounter += 1
-                UpdateLoadingProgress()
+        '    m_intCounter = 0
+        '    prgStatusBar.Maximum = xList.Count
 
-                strName = xElement.GetAttribute("JournalName").ToLower()
-                strNotes = xElement.InnerText
-                If strNotes.Length > 0 Then
-                    For Each obj In JournalList
-                        If obj.JournalName.ToLower() = strName Then
-                            obj.Notes = xElement.InnerText
-                        End If
-                    Next
-                End If
-            Next
-        End If
+        '    For Each xElement As XmlElement In xList
+        '        m_intCounter += 1
+        '        UpdateLoadingProgress()
+
+        '        strName = xElement.GetAttribute("JournalName").ToLower()
+        '        strNotes = xElement.InnerText
+        '        If strNotes.Length > 0 Then
+        '            For Each obj In JournalList
+        '                If obj.JournalName.ToLower() = strName Then
+        '                    obj.Notes = xElement.InnerText
+        '                End If
+        '            Next
+        '        End If
+        '    Next
+        'End If
 
         UpdateLoadingProgress()
 
