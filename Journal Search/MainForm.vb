@@ -665,4 +665,31 @@ Public Class MainForm
         End Try
 
     End Sub
+
+    Private Sub dgvData_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgvData.CellEndEdit
+        '-- Persist notes (if that was the cell edited)
+        If dgvData.Columns(e.ColumnIndex).DataPropertyName = NotesColumn.DataPropertyName Then
+            '-- persist notes
+            Dim strNotes As String = dgvData.CurrentCell.Value
+            Dim obj As Entry = dgvData.Rows(e.RowIndex).DataBoundItem
+            Dim strJournal As String = obj.JournalName
+            PersistChangedNotes(strJournal, strNotes)
+        End If
+    End Sub
+    Private Sub PersistChangedNotes(journalName As String, notes As String)
+        Dim xDoc2 As New Xml.XmlDocument()
+        xDoc2.Load("JournalSearchDataExtra.xml")
+        Dim root2 As Xml.XmlElement = xDoc2.DocumentElement()
+        Dim element2 As Xml.XmlElement = root2.SelectSingleNode("//JournalNote[@JournalName='" & journalName & "']")
+
+        If element2 Is Nothing Then
+            element2 = root2.AppendChild(xDoc2.CreateElement("JournalNote"))
+        End If
+
+        element2.SetAttribute("JournalName", journalName)
+        element2.InnerText = notes
+
+        xDoc2.Save("JournalSearchDataExtra.xml")
+
+    End Sub
 End Class

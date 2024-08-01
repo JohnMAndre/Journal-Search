@@ -54,7 +54,7 @@ Partial Class MainForm
         Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NotesColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgvData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -66,7 +66,7 @@ Partial Class MainForm
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvData.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column12, Me.Column11})
+        Me.dgvData.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column12, Me.NotesColumn})
         Me.dgvData.Location = New System.Drawing.Point(0, 74)
         Me.dgvData.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvData.Name = "dgvData"
@@ -305,11 +305,11 @@ Partial Class MainForm
         Me.Column12.HeaderText = "Areas"
         Me.Column12.Name = "Column12"
         '
-        'Column11
+        'NotesColumn
         '
-        Me.Column11.DataPropertyName = "Notes"
-        Me.Column11.HeaderText = "Notes"
-        Me.Column11.Name = "Column11"
+        Me.NotesColumn.DataPropertyName = "Notes"
+        Me.NotesColumn.HeaderText = "Notes"
+        Me.NotesColumn.Name = "NotesColumn"
         '
         'MainForm
         '
@@ -372,5 +372,5 @@ Partial Class MainForm
     Friend WithEvents Column9 As DataGridViewTextBoxColumn
     Friend WithEvents Column10 As DataGridViewTextBoxColumn
     Friend WithEvents Column12 As DataGridViewTextBoxColumn
-    Friend WithEvents Column11 As DataGridViewTextBoxColumn
+    Friend WithEvents NotesColumn As DataGridViewTextBoxColumn
 End Class
