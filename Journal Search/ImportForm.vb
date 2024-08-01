@@ -9,6 +9,7 @@
         Try
             Dim strRows() As String
             Dim obj As Entry
+            dgvData.DataSource = Nothing
 
             Dim strClipboard As String = Clipboard.GetText()
             If strClipboard Is Nothing Then
@@ -31,8 +32,13 @@
                     Continue For '-- skip this row, it has no data
                 End If
                 row = strRows(intCounter).Split(vbTab)
+
                 If row.Length >= 1 Then
                     obj.JournalName = row(0).Trim()
+                End If
+
+                If obj.JournalName.ToLower() = JournalNameColumn.HeaderText.ToLower() Then
+                    Continue For '-- skip this row, it is just the column headers
                 End If
 
                 If row.Length >= 2 Then
@@ -68,6 +74,8 @@
 
 
                 m_lstTemp.Add(obj)
+                Me.Text = "Import Data (" & intCounter.ToString("#,##0") & ")"
+                Application.DoEvents()
             Next
 
             '-- Add to DGV

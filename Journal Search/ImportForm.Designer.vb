@@ -34,7 +34,8 @@ Partial Class ImportForm
         Me.txtSourceToDelete = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.dgvData = New System.Windows.Forms.DataGridView()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CopyColumnsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.JournalNameColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -45,7 +46,6 @@ Partial Class ImportForm
         Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.CopyColumnsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.dgvData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -144,7 +144,7 @@ Partial Class ImportForm
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvData.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column11})
+        Me.dgvData.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.JournalNameColumn, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column11})
         Me.dgvData.Location = New System.Drawing.Point(13, 74)
         Me.dgvData.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvData.Name = "dgvData"
@@ -152,12 +152,18 @@ Partial Class ImportForm
         Me.dgvData.Size = New System.Drawing.Size(1157, 230)
         Me.dgvData.TabIndex = 10
         '
-        'Column1
+        'CopyColumnsToolStripMenuItem
         '
-        Me.Column1.DataPropertyName = "JournalName"
-        Me.Column1.HeaderText = "Journal name"
-        Me.Column1.Name = "Column1"
-        Me.Column1.ReadOnly = True
+        Me.CopyColumnsToolStripMenuItem.Name = "CopyColumnsToolStripMenuItem"
+        Me.CopyColumnsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.CopyColumnsToolStripMenuItem.Text = "&Copy columns"
+        '
+        'JournalNameColumn
+        '
+        Me.JournalNameColumn.DataPropertyName = "JournalName"
+        Me.JournalNameColumn.HeaderText = "Journal name"
+        Me.JournalNameColumn.Name = "JournalNameColumn"
+        Me.JournalNameColumn.ReadOnly = True
         '
         'Column2
         '
@@ -229,12 +235,6 @@ Partial Class ImportForm
         Me.Column11.Name = "Column11"
         Me.Column11.ReadOnly = True
         '
-        'CopyColumnsToolStripMenuItem
-        '
-        Me.CopyColumnsToolStripMenuItem.Name = "CopyColumnsToolStripMenuItem"
-        Me.CopyColumnsToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.CopyColumnsToolStripMenuItem.Text = "&Copy columns"
-        '
         'ImportForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
@@ -271,7 +271,8 @@ Partial Class ImportForm
     Friend WithEvents txtSourceToDelete As TextBox
     Friend WithEvents Label3 As Label
     Friend WithEvents dgvData As DataGridView
-    Friend WithEvents Column1 As DataGridViewTextBoxColumn
+    Friend WithEvents CopyColumnsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents JournalNameColumn As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents Column3 As DataGridViewTextBoxColumn
     Friend WithEvents Column4 As DataGridViewTextBoxColumn
@@ -282,5 +283,4 @@ Partial Class ImportForm
     Friend WithEvents Column9 As DataGridViewTextBoxColumn
     Friend WithEvents Column10 As DataGridViewTextBoxColumn
     Friend WithEvents Column11 As DataGridViewTextBoxColumn
-    Friend WithEvents CopyColumnsToolStripMenuItem As ToolStripMenuItem
 End Class
