@@ -75,9 +75,15 @@
 
                 m_lstTemp.Add(obj)
                 Me.Text = "Import Data (pasting " & intCounter.ToString("#,##0") & " of " & strRows.Count.ToString("#,##0") & ")"
-                txtSourceToDelete.Text = obj.Source
                 Application.DoEvents()
             Next
+
+            '-- Update source and set background color so user does not forget
+            If m_lstTemp.Count > 0 Then
+                txtSourceToDelete.Text = m_lstTemp(0).Source
+                txtSourceToDelete.BackColor = Color.Yellow
+            End If
+
 
             '-- Add to DGV
             dgvData.AutoGenerateColumns = False
