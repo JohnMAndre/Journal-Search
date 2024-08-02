@@ -158,7 +158,69 @@ Public Class MainForm
     Private Function WrapTextInQuotes(text As String) As String
         Return """" & text.Replace("""", String.Empty) & """"
     End Function
-    Public Function ApplyFilterAllColumns(partialMatch As Boolean, search1 As String, search2 As String, search3 As String, search4 As String) As List(Of Entry)
+#Region " Filter routines "
+    Public Function ApplyFilterAllColumns(searchCriteria As String, matchAllCriteria As Boolean) As List(Of Entry)
+        '-- always partial match
+        Dim lstReturn As List(Of Entry)
+
+        If searchCriteria.Contains(" ") AndAlso Not searchCriteria.StartsWith("""") Then
+            '-- it has a space, not starting with a quote, spit into multiple criteria
+            Dim str As String() = searchCriteria.Split(" ")
+            Dim combinedList As IEnumerable(Of Entry)
+
+            For Each item As String In str
+                If lstReturn Is Nothing Then
+                    lstReturn = JournalList.Where(Function(x) (x.JournalName.ToLower.Contains(item) OrElse
+                                                                x.PublisherName.ToLower.Contains(item) OrElse
+                                                                x.ISSNs.ToLower.Contains(item) OrElse
+                                                                x.Source.ToLower.Contains(item) OrElse
+                                                                x.Categories.ToLower.Contains(item) OrElse
+                                                                x.Areas.ToLower.Contains(item) OrElse
+                                                                x.Notes.ToLower.Contains(item) OrElse
+                                                                x.Rating.ToLower.Contains(item) OrElse
+                                                                x.Country.ToLower.Contains(item))).ToList()
+                Else
+                    If matchAllCriteria Then
+                        '-- match all criteria
+                        combinedList = lstReturn.Intersect(JournalList.Where(Function(x) (x.JournalName.ToLower.Contains(item) OrElse
+                                                                                        x.PublisherName.ToLower.Contains(item) OrElse
+                                                                                        x.ISSNs.ToLower.Contains(item) OrElse
+                                                                                        x.Source.ToLower.Contains(item) OrElse
+                                                                                        x.Categories.ToLower.Contains(item) OrElse
+                                                                                        x.Areas.ToLower.Contains(item) OrElse
+                                                                                        x.Notes.ToLower.Contains(item) OrElse
+                                                                                        x.Rating.ToLower.Contains(item) OrElse
+                                                                                        x.Country.ToLower.Contains(item))).ToList())
+                    Else
+                        '-- match any criteria
+                        combinedList = lstReturn.Union(JournalList.Where(Function(x) (x.JournalName.ToLower.Contains(item) OrElse
+                                                                                        x.PublisherName.ToLower.Contains(item) OrElse
+                                                                                        x.ISSNs.ToLower.Contains(item) OrElse
+                                                                                        x.Source.ToLower.Contains(item) OrElse
+                                                                                        x.Categories.ToLower.Contains(item) OrElse
+                                                                                        x.Areas.ToLower.Contains(item) OrElse
+                                                                                        x.Notes.ToLower.Contains(item) OrElse
+                                                                                        x.Rating.ToLower.Contains(item) OrElse
+                                                                                        x.Country.ToLower.Contains(item))).ToList())
+                    End If
+                    lstReturn = combinedList.ToList()
+                End If
+            Next
+        Else
+            '-- search based on phrase
+            Dim searchPhrase As String = searchCriteria.Replace("""", "") '-- must strip quotes, just in case it is a phrase
+            lstReturn = JournalList.Where(Function(x) (x.JournalName.ToLower.Contains(searchPhrase) OrElse
+                                                                x.PublisherName.ToLower.Contains(searchPhrase) OrElse
+                                                                x.ISSNs.ToLower.Contains(searchPhrase) OrElse
+                                                                x.Source.ToLower.Contains(searchPhrase) OrElse
+                                                                x.Categories.ToLower.Contains(searchPhrase) OrElse
+                                                                x.Areas.ToLower.Contains(searchPhrase) OrElse
+                                                                x.Notes.ToLower.Contains(searchPhrase) OrElse
+                                                                x.Rating.ToLower.Contains(searchPhrase) OrElse
+                                                                x.Country.ToLower.Contains(searchPhrase))).ToList()
+        End If
+
+        Return lstReturn
 
     End Function
     Public Function ApplyFilterJournalName(searchCriteria As String, matchAllCriteria As Boolean) As List(Of Entry)
@@ -503,440 +565,43 @@ Public Class MainForm
         Return lstReturn
     End Function
     Private Sub ApplyFilter()
-        Dim lstFiltered As List(Of Entry)
-        Select Case cboFilterColumn.SelectedIndex
-            Case SearchColumnEnum.AllColumns
-                'lstFiltered = ApplyFilterAllColumns(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
-                Exit Sub
-            Case SearchColumnEnum.JournalName
-                lstFiltered = ApplyFilterJournalName(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
-            Case SearchColumnEnum.Publisher
-                lstFiltered = ApplyFilterPublisher(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
-            Case SearchColumnEnum.ISSNs
-                lstFiltered = ApplyFilterISSNs(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
-            Case SearchColumnEnum.Source
-                lstFiltered = ApplyFilterSource(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
-            Case SearchColumnEnum.Ranking
-                lstFiltered = ApplyFilterRanking(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
-            Case SearchColumnEnum.Rating
-                lstFiltered = ApplyFilterRating(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
-            Case SearchColumnEnum.HIndex
-                lstFiltered = ApplyFilterHIndex(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
-            Case SearchColumnEnum.Country
-                lstFiltered = ApplyFilterCountry(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
-            Case SearchColumnEnum.Categories
-                lstFiltered = ApplyFilterCategories(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
-            Case SearchColumnEnum.Areas
-                lstFiltered = ApplyFilterAreas(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
-            Case SearchColumnEnum.Notes
-                lstFiltered = ApplyFilterNotes(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
-        End Select
+        Try
+            Dim lstFiltered As List(Of Entry)
+            Select Case cboFilterColumn.SelectedIndex
+                Case SearchColumnEnum.AllColumns
+                    lstFiltered = ApplyFilterAllColumns(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
+                Case SearchColumnEnum.JournalName
+                    lstFiltered = ApplyFilterJournalName(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
+                Case SearchColumnEnum.Publisher
+                    lstFiltered = ApplyFilterPublisher(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
+                Case SearchColumnEnum.ISSNs
+                    lstFiltered = ApplyFilterISSNs(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
+                Case SearchColumnEnum.Source
+                    lstFiltered = ApplyFilterSource(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
+                Case SearchColumnEnum.Ranking
+                    lstFiltered = ApplyFilterRanking(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
+                Case SearchColumnEnum.Rating
+                    lstFiltered = ApplyFilterRating(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
+                Case SearchColumnEnum.HIndex
+                    lstFiltered = ApplyFilterHIndex(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
+                Case SearchColumnEnum.Country
+                    lstFiltered = ApplyFilterCountry(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
+                Case SearchColumnEnum.Categories
+                    lstFiltered = ApplyFilterCategories(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
+                Case SearchColumnEnum.Areas
+                    lstFiltered = ApplyFilterAreas(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
+                Case SearchColumnEnum.Notes
+                    lstFiltered = ApplyFilterNotes(txtFilter.Text.ToLower(), cboMatchType.SelectedIndex = 0)
+            End Select
 
-        dgvData.DataSource = lstFiltered
-        lblFilteredCount.Text = "(" & lstFiltered.Count.ToString("#,##0") & " filtered)"
-
-
-
-
-        'Try
-        '    dgvData.DataSource = Nothing
-        '    dgvData.Refresh()
-
-        '    lblFilteredCount.Text = String.Empty
-        '    lblFilteredCount.Refresh()
-
-        '    Dim strSearchFor As String
-        '    If txtFilter.Text.Length = 0 Then
-        '        dgvData.DataSource = JournalList
-        '        lblFilteredCount.Text = String.Empty
-        '    Else
-        '        txtFilter.Text = txtFilter.Text.Trim()
-
-        '        If txtFilter.Text.Contains(" ") AndAlso Not txtFilter.Text.StartsWith("""") And Not chkPartialMatch.Checked Then
-        '            '-- it has a space, not starting with a quote, but not set to partial, change to  partial
-        '            txtFilter.Text = WrapTextInQuotes(txtFilter.Text)
-        '            txtFilter.Refresh()
-        '        End If
-
-        '        strSearchFor = txtFilter.Text.ToLower()
-        '        lblStatusLabel1.Text = String.Empty
-
-        '        '-- If there is a space, then split into multiple independent search criteria
-        '        If strSearchFor.Contains(" ") AndAlso Not strSearchFor.StartsWith("""") Then
-        '            Dim strSearchFor2, strSearchFor3, strSearchFor4 As String
-
-        '            Dim str As String() = strSearchFor.Split(" ")
-        '            If str.Length > 0 Then
-        '                strSearchFor = str(0)
-        '            Else
-        '                Exit Sub
-        '            End If
-        '            If str.Length > 1 Then
-        '                strSearchFor2 = str(1)
-        '            End If
-        '            If str.Length > 2 Then
-        '                strSearchFor3 = str(2)
-        '            End If
-        '            If str.Length > 3 Then
-        '                strSearchFor4 = str(3)
-        '            End If
-
-        '            If str.Length > 4 Then
-        '                lblStatusLabel1.Text = "Queries over four words are treated as a phrase"
-        '            End If
-
-        '            Select Case str.Length
-        '                Case 1
-        '                    strSearchFor = strSearchFor.Replace("""", "").Trim '-- must strip quotes, just in case it is a phrase
-
-        '                    Select Case cboFilterColumn.SelectedIndex
-        '                        Case SearchColumnEnum.AllColumns
-        '                            If chkPartialMatch.Checked Then
-        '                                lstFiltered = JournalList.Where(Function(x) x.JournalName.ToLower.Contains(strSearchFor) OrElse
-        '                                                                            x.PublisherName.ToLower.Contains(strSearchFor) OrElse
-        '                                                                            x.ISSNs.ToLower.Contains(strSearchFor) OrElse
-        '                                                                            x.Source.ToLower.Contains(strSearchFor) OrElse
-        '                                                                            x.Categories.ToLower.Contains(strSearchFor) OrElse
-        '                                                                            x.Areas.ToLower.Contains(strSearchFor) OrElse
-        '                                                                            x.Notes.ToLower.Contains(strSearchFor) OrElse
-        '                                                                            x.Rating.ToLower.Contains(strSearchFor) OrElse
-        '                                                                            x.Country.ToLower.Contains(strSearchFor)).ToList()
-        '                            Else
-        '                                lstFiltered = JournalList.Where(Function(x) x.JournalName.ToLower() = strSearchFor OrElse
-        '                                                            x.PublisherName.ToLower() = strSearchFor OrElse
-        '                                                            x.ISSNs.ToLower() = strSearchFor OrElse
-        '                                                            x.Source.ToLower() = strSearchFor OrElse
-        '                                                            x.Categories.ToLower() = strSearchFor OrElse
-        '                                                            x.Areas.ToLower() = strSearchFor OrElse
-        '                                                            x.Notes.ToLower() = strSearchFor OrElse
-        '                                                            x.Rating.ToLower() = strSearchFor OrElse
-        '                                                            x.Country.ToLower() = strSearchFor).ToList()
-        '                            End If
-        '                        Case SearchColumnEnum.JournalName
-        '                            If chkPartialMatch.Checked Then
-        '                                lstFiltered = JournalList.Where(Function(x) x.JournalName.ToLower.Contains(strSearchFor)).ToList()
-        '                            Else
-        '                                lstFiltered = JournalList.Where(Function(x) x.JournalName.ToLower() = strSearchFor).ToList()
-        '                            End If
-        '                        Case SearchColumnEnum.Publisher
-        '                            If chkPartialMatch.Checked Then
-        '                                lstFiltered = JournalList.Where(Function(x) x.PublisherName.ToLower.Contains(strSearchFor)).ToList()
-        '                            Else
-        '                                lstFiltered = JournalList.Where(Function(x) x.PublisherName.ToLower() = strSearchFor).ToList()
-        '                            End If
-        '                    End Select
-
-
-
-
-        '                    If cboFilterColumn.SelectedIndex = SearchColumnEnum.AllColumns Then
-
-        '                    Else
-
-        '                    End If
-        '                Case 2
-        '                    If cboFilterColumn.SelectedIndex = SearchColumnEnum.AllColumns Then
-        '                        If chkPartialMatch.Checked Then
-        '                            lstFiltered = JournalList.Where(Function(x) (x.JournalName.ToLower.Contains(strSearchFor) OrElse
-        '                                                       x.PublisherName.ToLower.Contains(strSearchFor) OrElse
-        '                                                       x.ISSNs.ToLower.Contains(strSearchFor) OrElse
-        '                                                       x.Source.ToLower.Contains(strSearchFor) OrElse
-        '                                                       x.Categories.ToLower.Contains(strSearchFor) OrElse
-        '                                                       x.Areas.ToLower.Contains(strSearchFor) OrElse
-        '                                                       x.Notes.ToLower.Contains(strSearchFor) OrElse
-        '                                                       x.Rating.ToLower.Contains(strSearchFor) OrElse
-        '                                                       x.Country.ToLower.Contains(strSearchFor)) AndAlso
-        '                                                        (x.JournalName.ToLower.Contains(strSearchFor2) OrElse
-        '                                                       x.PublisherName.ToLower.Contains(strSearchFor2) OrElse
-        '                                                       x.ISSNs.ToLower.Contains(strSearchFor2) OrElse
-        '                                                       x.Source.ToLower.Contains(strSearchFor2) OrElse
-        '                                                       x.Categories.ToLower.Contains(strSearchFor2) OrElse
-        '                                                       x.Areas.ToLower.Contains(strSearchFor2) OrElse
-        '                                                       x.Notes.ToLower.Contains(strSearchFor2) OrElse
-        '                                                       x.Rating.ToLower.Contains(strSearchFor2) OrElse
-        '                                                       x.Country.ToLower.Contains(strSearchFor2))).ToList()
-        '                        Else
-        '                            lstFiltered = JournalList.Where(Function(x) (x.JournalName.ToLower() = strSearchFor OrElse
-        '                                                       x.PublisherName.ToLower() = strSearchFor OrElse
-        '                                                       x.ISSNs.ToLower() = strSearchFor OrElse
-        '                                                       x.Source.ToLower() = strSearchFor OrElse
-        '                                                       x.Categories.ToLower() = strSearchFor OrElse
-        '                                                       x.Areas.ToLower() = strSearchFor OrElse
-        '                                                       x.Notes.ToLower() = strSearchFor OrElse
-        '                                                       x.Rating.ToLower() = strSearchFor OrElse
-        '                                                       x.Country.ToLower() = strSearchFor) AndAlso
-        '                                                        (x.JournalName.ToLower() = strSearchFor2 OrElse
-        '                                                       x.PublisherName.ToLower() = strSearchFor2 OrElse
-        '                                                       x.ISSNs.ToLower() = strSearchFor2 OrElse
-        '                                                       x.Source.ToLower() = strSearchFor2 OrElse
-        '                                                       x.Categories.ToLower() = strSearchFor2 OrElse
-        '                                                       x.Areas.ToLower() = strSearchFor2 OrElse
-        '                                                       x.Notes.ToLower() = strSearchFor2 OrElse
-        '                                                       x.Rating.ToLower() = strSearchFor2 OrElse
-        '                                                       x.Country.ToLower() = strSearchFor2)).ToList()
-        '                        End If
-        '                    Else
-
-        '                    End If
-
-        '                Case 3
-        '                    If cboFilterColumn.SelectedIndex = SearchColumnEnum.AllColumns Then
-        '                        If chkPartialMatch.Checked Then
-        '                            lstFiltered = JournalList.Where(Function(x) (x.JournalName.ToLower.Contains(strSearchFor) OrElse
-        '                                                      x.PublisherName.ToLower.Contains(strSearchFor) OrElse
-        '                                                      x.ISSNs.ToLower.Contains(strSearchFor) OrElse
-        '                                                      x.Source.ToLower.Contains(strSearchFor) OrElse
-        '                                                      x.Categories.ToLower.Contains(strSearchFor) OrElse
-        '                                                      x.Areas.ToLower.Contains(strSearchFor) OrElse
-        '                                                      x.Notes.ToLower.Contains(strSearchFor) OrElse
-        '                                                      x.Rating.ToLower.Contains(strSearchFor) OrElse
-        '                                                      x.Country.ToLower.Contains(strSearchFor)) AndAlso
-        '                                                       (x.JournalName.ToLower.Contains(strSearchFor2) OrElse
-        '                                                      x.PublisherName.ToLower.Contains(strSearchFor2) OrElse
-        '                                                      x.ISSNs.ToLower.Contains(strSearchFor2) OrElse
-        '                                                      x.Source.ToLower.Contains(strSearchFor2) OrElse
-        '                                                      x.Categories.ToLower.Contains(strSearchFor2) OrElse
-        '                                                      x.Areas.ToLower.Contains(strSearchFor2) OrElse
-        '                                                      x.Notes.ToLower.Contains(strSearchFor2) OrElse
-        '                                                      x.Rating.ToLower.Contains(strSearchFor2) OrElse
-        '                                                      x.Country.ToLower.Contains(strSearchFor2)) AndAlso
-        '                                                       (x.JournalName.ToLower.Contains(strSearchFor3) OrElse
-        '                                                      x.PublisherName.ToLower.Contains(strSearchFor3) OrElse
-        '                                                      x.ISSNs.ToLower.Contains(strSearchFor3) OrElse
-        '                                                      x.Source.ToLower.Contains(strSearchFor3) OrElse
-        '                                                      x.Categories.ToLower.Contains(strSearchFor3) OrElse
-        '                                                      x.Areas.ToLower.Contains(strSearchFor3) OrElse
-        '                                                      x.Notes.ToLower.Contains(strSearchFor3) OrElse
-        '                                                      x.Rating.ToLower.Contains(strSearchFor3) OrElse
-        '                                                      x.Country.ToLower.Contains(strSearchFor3))).ToList()
-        '                        Else
-        '                            lstFiltered = JournalList.Where(Function(x) (x.JournalName.ToLower() = strSearchFor OrElse
-        '                                                      x.PublisherName.ToLower() = strSearchFor OrElse
-        '                                                      x.ISSNs.ToLower() = strSearchFor OrElse
-        '                                                      x.Source.ToLower() = strSearchFor OrElse
-        '                                                      x.Categories.ToLower() = strSearchFor OrElse
-        '                                                      x.Areas.ToLower() = strSearchFor OrElse
-        '                                                      x.Notes.ToLower() = strSearchFor OrElse
-        '                                                      x.Rating.ToLower() = strSearchFor OrElse
-        '                                                      x.Country.ToLower() = strSearchFor) AndAlso
-        '                                                       (x.JournalName.ToLower() = strSearchFor2 OrElse
-        '                                                      x.PublisherName.ToLower() = strSearchFor2 OrElse
-        '                                                      x.ISSNs.ToLower() = strSearchFor2 OrElse
-        '                                                      x.Source.ToLower() = strSearchFor2 OrElse
-        '                                                      x.Categories.ToLower() = strSearchFor2 OrElse
-        '                                                      x.Rating.ToLower() = strSearchFor2 OrElse
-        '                                                      x.Country.ToLower() = strSearchFor2) AndAlso
-        '                                                       (x.JournalName.ToLower() = strSearchFor3 OrElse
-        '                                                      x.PublisherName.ToLower() = strSearchFor3 OrElse
-        '                                                      x.ISSNs.ToLower() = strSearchFor3 OrElse
-        '                                                      x.Source.ToLower() = strSearchFor3 OrElse
-        '                                                      x.Categories.ToLower() = strSearchFor3 OrElse
-        '                                                      x.Areas.ToLower() = strSearchFor3 OrElse
-        '                                                      x.Notes.ToLower() = strSearchFor3 OrElse
-        '                                                      x.Rating.ToLower() = strSearchFor3 OrElse
-        '                                                      x.Country.ToLower() = strSearchFor3)).ToList()
-        '                        End If
-        '                    Else
-        '                        If chkPartialMatch.Checked Then
-        '                            lstFiltered = JournalList.Where(Function(x) (x.JournalName.ToLower.Contains(strSearchFor)) AndAlso
-        '                                                       (x.JournalName.ToLower.Contains(strSearchFor2)) AndAlso
-        '                                                       (x.JournalName.ToLower.Contains(strSearchFor3))).ToList()
-        '                        Else
-        '                            lstFiltered = JournalList.Where(Function(x) x.JournalName.ToLower() = strSearchFor AndAlso
-        '                                                       x.JournalName.ToLower() = strSearchFor2 AndAlso
-        '                                                       x.JournalName.ToLower() = strSearchFor3).ToList()
-        '                        End If
-        '                    End If
-
-        '                Case 4
-        '                    If cboFilterColumn.SelectedIndex = SearchColumnEnum.AllColumns Then
-        '                        If chkPartialMatch.Checked Then
-        '                            lstFiltered = JournalList.Where(Function(x) (x.JournalName.ToLower.Contains(strSearchFor) OrElse
-        '                                                      x.PublisherName.ToLower.Contains(strSearchFor) OrElse
-        '                                                      x.ISSNs.ToLower.Contains(strSearchFor) OrElse
-        '                                                      x.Source.ToLower.Contains(strSearchFor) OrElse
-        '                                                      x.Categories.ToLower.Contains(strSearchFor) OrElse
-        '                                                      x.Areas.ToLower.Contains(strSearchFor) OrElse
-        '                                                      x.Notes.ToLower.Contains(strSearchFor) OrElse
-        '                                                      x.Rating.ToLower.Contains(strSearchFor) OrElse
-        '                                                      x.Country.ToLower.Contains(strSearchFor)) AndAlso
-        '                                                       (x.JournalName.ToLower.Contains(strSearchFor2) OrElse
-        '                                                      x.PublisherName.ToLower.Contains(strSearchFor2) OrElse
-        '                                                      x.ISSNs.ToLower.Contains(strSearchFor2) OrElse
-        '                                                      x.Source.ToLower.Contains(strSearchFor2) OrElse
-        '                                                      x.Categories.ToLower.Contains(strSearchFor2) OrElse
-        '                                                      x.Areas.ToLower.Contains(strSearchFor2) OrElse
-        '                                                      x.Notes.ToLower.Contains(strSearchFor2) OrElse
-        '                                                      x.Rating.ToLower.Contains(strSearchFor2) OrElse
-        '                                                      x.Country.ToLower.Contains(strSearchFor2)) AndAlso
-        '                                                       (x.JournalName.ToLower.Contains(strSearchFor3) OrElse
-        '                                                      x.PublisherName.ToLower.Contains(strSearchFor3) OrElse
-        '                                                      x.ISSNs.ToLower.Contains(strSearchFor3) OrElse
-        '                                                      x.Source.ToLower.Contains(strSearchFor3) OrElse
-        '                                                      x.Categories.ToLower.Contains(strSearchFor3) OrElse
-        '                                                      x.Areas.ToLower.Contains(strSearchFor3) OrElse
-        '                                                      x.Notes.ToLower.Contains(strSearchFor3) OrElse
-        '                                                      x.Rating.ToLower.Contains(strSearchFor3) OrElse
-        '                                                      x.Country.ToLower.Contains(strSearchFor3)) AndAlso
-        '                                                       (x.JournalName.ToLower.Contains(strSearchFor4) OrElse
-        '                                                      x.PublisherName.ToLower.Contains(strSearchFor4) OrElse
-        '                                                      x.ISSNs.ToLower.Contains(strSearchFor4) OrElse
-        '                                                      x.Source.ToLower.Contains(strSearchFor4) OrElse
-        '                                                      x.Categories.ToLower.Contains(strSearchFor4) OrElse
-        '                                                      x.Areas.ToLower.Contains(strSearchFor4) OrElse
-        '                                                      x.Notes.ToLower.Contains(strSearchFor4) OrElse
-        '                                                      x.Rating.ToLower.Contains(strSearchFor4) OrElse
-        '                                                      x.Country.ToLower.Contains(strSearchFor4))).ToList()
-        '                        Else
-        '                            lstFiltered = JournalList.Where(Function(x) (x.JournalName.ToLower() = strSearchFor OrElse
-        '                                                      x.PublisherName.ToLower() = strSearchFor OrElse
-        '                                                      x.ISSNs.ToLower() = strSearchFor OrElse
-        '                                                      x.Source.ToLower() = strSearchFor OrElse
-        '                                                      x.Categories.ToLower() = strSearchFor OrElse
-        '                                                      x.Areas.ToLower() = strSearchFor OrElse
-        '                                                      x.Notes.ToLower() = strSearchFor OrElse
-        '                                                      x.Rating.ToLower() = strSearchFor OrElse
-        '                                                      x.Country.ToLower() = strSearchFor) AndAlso
-        '                                                       (x.JournalName.ToLower() = strSearchFor2 OrElse
-        '                                                      x.PublisherName.ToLower() = strSearchFor2 OrElse
-        '                                                      x.ISSNs.ToLower() = strSearchFor2 OrElse
-        '                                                      x.Source.ToLower() = strSearchFor2 OrElse
-        '                                                      x.Categories.ToLower() = strSearchFor2 OrElse
-        '                                                      x.Areas.ToLower() = strSearchFor2 OrElse
-        '                                                      x.Notes.ToLower() = strSearchFor2 OrElse
-        '                                                      x.Rating.ToLower() = strSearchFor2 OrElse
-        '                                                      x.Country.ToLower() = strSearchFor2) AndAlso
-        '                                                       (x.JournalName.ToLower() = strSearchFor3 OrElse
-        '                                                      x.PublisherName.ToLower() = strSearchFor3 OrElse
-        '                                                      x.ISSNs.ToLower() = strSearchFor3 OrElse
-        '                                                      x.Source.ToLower() = strSearchFor3 OrElse
-        '                                                      x.Categories.ToLower() = strSearchFor3 OrElse
-        '                                                      x.Areas.ToLower() = strSearchFor3 OrElse
-        '                                                      x.Notes.ToLower() = strSearchFor3 OrElse
-        '                                                      x.Rating.ToLower() = strSearchFor3 OrElse
-        '                                                      x.Country.ToLower() = strSearchFor3) AndAlso
-        '                                                       (x.JournalName.ToLower() = strSearchFor4 OrElse
-        '                                                      x.PublisherName.ToLower() = strSearchFor4 OrElse
-        '                                                      x.ISSNs.ToLower() = strSearchFor4 OrElse
-        '                                                      x.Source.ToLower() = strSearchFor4 OrElse
-        '                                                      x.Categories.ToLower() = strSearchFor4 OrElse
-        '                                                      x.Areas.ToLower() = strSearchFor4 OrElse
-        '                                                      x.Notes.ToLower() = strSearchFor4 OrElse
-        '                                                      x.Rating.ToLower() = strSearchFor4 OrElse
-        '                                                      x.Country.ToLower() = strSearchFor4)).ToList()
-        '                        End If
-        '                    Else
-        '                        If chkPartialMatch.Checked Then
-        '                            lstFiltered = JournalList.Where(Function(x) (x.JournalName.ToLower.Contains(strSearchFor)) AndAlso
-        '                                                       (x.JournalName.ToLower.Contains(strSearchFor2)) AndAlso
-        '                                                       (x.JournalName.ToLower.Contains(strSearchFor3)) AndAlso
-        '                                                       (x.JournalName.ToLower.Contains(strSearchFor4))).ToList()
-        '                        Else
-        '                            lstFiltered = JournalList.Where(Function(x) x.JournalName.ToLower() = strSearchFor AndAlso
-        '                                                       x.JournalName.ToLower() = strSearchFor2 AndAlso
-        '                                                       x.JournalName.ToLower() = strSearchFor3 AndAlso
-        '                                                       x.JournalName.ToLower() = strSearchFor4).ToList()
-        '                        End If
-        '                    End If
-        '                Case Else
-        '                    '-- catch all
-        '                    strSearchFor = txtFilter.Text.ToLower()
-        '                    strSearchFor = strSearchFor.Replace("""", "").Trim '-- must strip quotes, just in case it is a phrase
-
-        '                    If cboFilterColumn.SelectedIndex = SearchColumnEnum.AllColumns Then
-        '                        If chkPartialMatch.Checked Then
-        '                            lstFiltered = JournalList.Where(Function(x) x.JournalName.ToLower.Contains(strSearchFor) OrElse
-        '                                                            x.PublisherName.ToLower.Contains(strSearchFor) OrElse
-        '                                                            x.ISSNs.ToLower.Contains(strSearchFor) OrElse
-        '                                                            x.Source.ToLower.Contains(strSearchFor) OrElse
-        '                                                            x.Categories.ToLower.Contains(strSearchFor) OrElse
-        '                                                            x.Areas.ToLower.Contains(strSearchFor) OrElse
-        '                                                            x.Notes.ToLower.Contains(strSearchFor) OrElse
-        '                                                            x.Rating.ToLower.Contains(strSearchFor) OrElse
-        '                                                            x.Country.ToLower.Contains(strSearchFor)).ToList()
-        '                        Else
-        '                            lstFiltered = JournalList.Where(Function(x) x.JournalName.ToLower() = strSearchFor OrElse
-        '                                                            x.PublisherName.ToLower() = strSearchFor OrElse
-        '                                                            x.ISSNs.ToLower() = strSearchFor OrElse
-        '                                                            x.Source.ToLower() = strSearchFor OrElse
-        '                                                            x.Categories.ToLower() = strSearchFor OrElse
-        '                                                            x.Areas.ToLower() = strSearchFor OrElse
-        '                                                            x.Notes.ToLower() = strSearchFor OrElse
-        '                                                            x.Rating.ToLower() = strSearchFor OrElse
-        '                                                            x.Country.ToLower() = strSearchFor).ToList()
-        '                        End If
-        '                    Else
-        '                        If chkPartialMatch.Checked Then
-        '                            lstFiltered = JournalList.Where(Function(x) x.JournalName.ToLower.Contains(strSearchFor)).ToList()
-        '                        Else
-        '                            lstFiltered = JournalList.Where(Function(x) x.JournalName.ToLower() = strSearchFor).ToList()
-        '                        End If
-        '                    End If
-        '            End Select
-
-
-        '        Else
-        '            strSearchFor = strSearchFor.Replace("""", "") '-- must strip quotes, just in case it is a phrase
-
-        '            If cboFilterColumn.SelectedIndex = SearchColumnEnum.AllColumns Then
-        '                If chkPartialMatch.Checked Then
-        '                    lstFiltered = JournalList.Where(Function(x) x.JournalName.ToLower.Contains(strSearchFor) OrElse
-        '                                                                x.PublisherName.ToLower.Contains(strSearchFor) OrElse
-        '                                                                x.ISSNs.ToLower.Contains(strSearchFor) OrElse
-        '                                                                x.Source.ToLower.Contains(strSearchFor) OrElse
-        '                                                                x.Categories.ToLower.Contains(strSearchFor) OrElse
-        '                                                                x.Areas.ToLower.Contains(strSearchFor) OrElse
-        '                                                                x.Notes.ToLower.Contains(strSearchFor) OrElse
-        '                                                                x.Rating.ToLower.Contains(strSearchFor) OrElse
-        '                                                                x.Country.ToLower.Contains(strSearchFor)).ToList()
-        '                Else
-        '                    lstFiltered = JournalList.Where(Function(x) x.JournalName.ToLower() = strSearchFor OrElse
-        '                                                                x.PublisherName.ToLower() = strSearchFor OrElse
-        '                                                                x.ISSNs.ToLower() = strSearchFor OrElse
-        '                                                                x.Source.ToLower() = strSearchFor OrElse
-        '                                                                x.Categories.ToLower() = strSearchFor OrElse
-        '                                                                x.Areas.ToLower() = strSearchFor OrElse
-        '                                                                x.Notes.ToLower() = strSearchFor OrElse
-        '                                                                x.Rating.ToLower() = strSearchFor OrElse
-        '                                                                x.Country.ToLower() = strSearchFor).ToList()
-        '                End If
-        '            Else
-        '                If chkPartialMatch.Checked Then
-        '                    lstFiltered = JournalList.Where(Function(x) x.JournalName.ToLower.Contains(strSearchFor)).ToList()
-        '                Else
-        '                    lstFiltered = JournalList.Where(Function(x) x.JournalName.ToLower() = strSearchFor).ToList()
-        '                End If
-        '            End If
-
-        '        End If
-        '        'If strSearchFor.Contains(":") Then
-        '        '    Dim intPos As Integer = strSearchFor.IndexOf(":")
-        '        '    Dim strField As String = strSearchFor.Substring(0, intPos).Trim().ToLower()
-        '        '    strSearchFor = strSearchFor.Substring(intPos + 1).Trim()
-        '        '    Select Case strField
-        '        '        Case "group"
-        '        '            lstFiltered = m_lstCurrentListOfStudents.Where(Function(x) x.StudentGroup.Equals(CInt(strSearchFor))).ToList()
-        '        '        Case "team"
-        '        '            lstFiltered = m_lstCurrentListOfStudents.Where(Function(x) x.StudentTeam.ToLower.Equals(strSearchFor.ToLower)).ToList()
-        '        '        Case "tags"
-        '        '            lstFiltered = m_lstCurrentListOfStudents.Where(Function(x) x.Tags.ToLower.Contains(strSearchFor.ToLower)).ToList()
-        '        '        Case "nickname"
-        '        '            lstFiltered = m_lstCurrentListOfStudents.Where(Function(x) x.Nickname.ToLower.Contains(strSearchFor.ToLower)).ToList()
-        '        '    End Select
-
-
-        '        'todo: could add filtering on multiple keywords, not just phrases (so "education technolog" would find everywith "education" and also "technolog" not just things with "education technolog"
-
-        '        'End If
-
-        '        dgvData.DataSource = lstFiltered
-        '        lblFilteredCount.Text = "(" & lstFiltered.Count.ToString("#,##0") & " filtered)"
-        '    End If
-        'Catch ex As Exception
-        '    MessageBox.Show("There was an error filtering: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        'End Try
+            dgvData.DataSource = lstFiltered
+            lblFilteredCount.Text = "(" & lstFiltered.Count.ToString("#,##0") & " filtered)"
+        Catch ex As Exception
+            MessageBox.Show("There was an error filtering: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
 
     End Sub
+#End Region
 
     Private Sub dgvData_KeyDown(sender As Object, e As KeyEventArgs) Handles dgvData.KeyDown
         If e.KeyCode = Keys.C AndAlso ModifierKeys = ModifierKeys.Control Then
