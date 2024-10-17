@@ -254,6 +254,16 @@ Public Class MainForm
 
         Return lstReturn
     End Function
+    Public Function ApplyFilterJournalNameExact(searchCriteria As String) As List(Of Entry)
+        '-- always partial match
+        Dim lstReturn As List(Of Entry)
+
+        '-- search based on phrase
+        Dim searchPhrase As String = searchCriteria.Replace("""", "") '-- must strip quotes, just in case it is a phrase
+        lstReturn = JournalList.Where(Function(x) x.JournalName.ToLower.Equals(searchPhrase)).ToList()
+
+        Return lstReturn
+    End Function
     Public Function ApplyFilterPublisher(searchCriteria As String, matchAllCriteria As Boolean) As List(Of Entry)
         '-- always partial match
         Dim lstReturn As List(Of Entry)
@@ -721,4 +731,17 @@ Public Class MainForm
         xDoc2.Save("JournalSearchDataExtra.xml")
 
     End Sub
+
+    Private Sub MatchSelectedJournalNameToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MatchSelectedJournalNameToolStripMenuItem.Click
+        Try
+            Dim lstFiltered As List(Of Entry)
+            lstFiltered = ApplyFilterJournalNameExact(txtFilter.Text.Trim.ToLower())
+            dgvData.DataSource = lstFiltered
+            lblFilteredCount.Text = "(" & lstFiltered.Count.ToString("#,##0") & " filtered)"
+        Catch ex As Exception
+            MessageBox.Show("There was an error filtering: " & ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+
 End Class

@@ -55,6 +55,7 @@ Partial Class MainForm
         Me.cboFilterColumn = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.cboMatchType = New System.Windows.Forms.ComboBox()
+        Me.MatchSelectedJournalNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.dgvData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -199,12 +200,12 @@ Partial Class MainForm
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(93, 22)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit"
         '
         'EditToolStripMenuItem
         '
-        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportUpdateDatabaseToolStripMenuItem, Me.AddOneEntryToolStripMenuItem, Me.ClearFilterToolStripMenuItem})
+        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportUpdateDatabaseToolStripMenuItem, Me.AddOneEntryToolStripMenuItem, Me.ClearFilterToolStripMenuItem, Me.MatchSelectedJournalNameToolStripMenuItem})
         Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
         Me.EditToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.EditToolStripMenuItem.Text = "&Data"
@@ -212,21 +213,21 @@ Partial Class MainForm
         'ImportUpdateDatabaseToolStripMenuItem
         '
         Me.ImportUpdateDatabaseToolStripMenuItem.Name = "ImportUpdateDatabaseToolStripMenuItem"
-        Me.ImportUpdateDatabaseToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
+        Me.ImportUpdateDatabaseToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
         Me.ImportUpdateDatabaseToolStripMenuItem.Text = "Import / update database..."
         '
         'AddOneEntryToolStripMenuItem
         '
         Me.AddOneEntryToolStripMenuItem.Name = "AddOneEntryToolStripMenuItem"
         Me.AddOneEntryToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.AddOneEntryToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
+        Me.AddOneEntryToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
         Me.AddOneEntryToolStripMenuItem.Text = "&Add one entry"
         '
         'ClearFilterToolStripMenuItem
         '
         Me.ClearFilterToolStripMenuItem.Name = "ClearFilterToolStripMenuItem"
         Me.ClearFilterToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Q), System.Windows.Forms.Keys)
-        Me.ClearFilterToolStripMenuItem.Size = New System.Drawing.Size(217, 22)
+        Me.ClearFilterToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
         Me.ClearFilterToolStripMenuItem.Text = "&Clear filter"
         '
         'ViewToolStripMenuItem
@@ -313,6 +314,13 @@ Partial Class MainForm
         Me.cboMatchType.Size = New System.Drawing.Size(106, 24)
         Me.cboMatchType.TabIndex = 11
         '
+        'MatchSelectedJournalNameToolStripMenuItem
+        '
+        Me.MatchSelectedJournalNameToolStripMenuItem.Name = "MatchSelectedJournalNameToolStripMenuItem"
+        Me.MatchSelectedJournalNameToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.M), System.Windows.Forms.Keys)
+        Me.MatchSelectedJournalNameToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.MatchSelectedJournalNameToolStripMenuItem.Text = "Match selected journal name"
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
@@ -376,4 +384,5 @@ Partial Class MainForm
     Friend WithEvents NotesColumn As DataGridViewTextBoxColumn
     Friend WithEvents Label2 As Label
     Friend WithEvents cboMatchType As ComboBox
+    Friend WithEvents MatchSelectedJournalNameToolStripMenuItem As ToolStripMenuItem
 End Class
