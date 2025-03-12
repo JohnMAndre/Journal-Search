@@ -3,8 +3,10 @@ Imports System.Xml
 
 Public Class MainForm
     Private m_intCounter As Integer
+    Private m_boolSkipPersistDataOnSave As Boolean
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+        m_boolSkipPersistDataOnSave = True
         Me.Close()
     End Sub
 
@@ -102,7 +104,9 @@ Public Class MainForm
     End Sub
 
     Private Sub MainForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        PersistData()
+        If m_boolSkipPersistDataOnSave Then
+            PersistData()
+        End If
     End Sub
     Private Sub PersistData()
         '-- save back data to main data file
@@ -744,4 +748,8 @@ Public Class MainForm
 
     End Sub
 
+    Private Sub ExitWithoutSavingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitWithoutSavingToolStripMenuItem.Click
+        m_boolSkipPersistDataOnSave = False
+        Me.Close()
+    End Sub
 End Class

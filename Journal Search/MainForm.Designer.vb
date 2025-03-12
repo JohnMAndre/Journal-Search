@@ -45,6 +45,7 @@ Partial Class MainForm
         Me.ImportUpdateDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddOneEntryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ClearFilterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MatchSelectedJournalNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AutosizeColumnsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MinisizeColumnsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -55,7 +56,7 @@ Partial Class MainForm
         Me.cboFilterColumn = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.cboMatchType = New System.Windows.Forms.ComboBox()
-        Me.MatchSelectedJournalNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExitWithoutSavingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.dgvData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -192,7 +193,7 @@ Partial Class MainForm
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExitToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExitToolStripMenuItem, Me.ExitWithoutSavingToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "&File"
@@ -200,8 +201,8 @@ Partial Class MainForm
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
-        Me.ExitToolStripMenuItem.Text = "E&xit"
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.ExitToolStripMenuItem.Text = "E&xit (saving changes)"
         '
         'EditToolStripMenuItem
         '
@@ -229,6 +230,13 @@ Partial Class MainForm
         Me.ClearFilterToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Q), System.Windows.Forms.Keys)
         Me.ClearFilterToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
         Me.ClearFilterToolStripMenuItem.Text = "&Clear filter"
+        '
+        'MatchSelectedJournalNameToolStripMenuItem
+        '
+        Me.MatchSelectedJournalNameToolStripMenuItem.Name = "MatchSelectedJournalNameToolStripMenuItem"
+        Me.MatchSelectedJournalNameToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.M), System.Windows.Forms.Keys)
+        Me.MatchSelectedJournalNameToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.MatchSelectedJournalNameToolStripMenuItem.Text = "Match selected journal name"
         '
         'ViewToolStripMenuItem
         '
@@ -314,12 +322,11 @@ Partial Class MainForm
         Me.cboMatchType.Size = New System.Drawing.Size(106, 24)
         Me.cboMatchType.TabIndex = 11
         '
-        'MatchSelectedJournalNameToolStripMenuItem
+        'ExitWithoutSavingToolStripMenuItem
         '
-        Me.MatchSelectedJournalNameToolStripMenuItem.Name = "MatchSelectedJournalNameToolStripMenuItem"
-        Me.MatchSelectedJournalNameToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.M), System.Windows.Forms.Keys)
-        Me.MatchSelectedJournalNameToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
-        Me.MatchSelectedJournalNameToolStripMenuItem.Text = "Match selected journal name"
+        Me.ExitWithoutSavingToolStripMenuItem.Name = "ExitWithoutSavingToolStripMenuItem"
+        Me.ExitWithoutSavingToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.ExitWithoutSavingToolStripMenuItem.Text = "Exit &without saving"
         '
         'MainForm
         '
@@ -385,4 +392,5 @@ Partial Class MainForm
     Friend WithEvents Label2 As Label
     Friend WithEvents cboMatchType As ComboBox
     Friend WithEvents MatchSelectedJournalNameToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ExitWithoutSavingToolStripMenuItem As ToolStripMenuItem
 End Class
