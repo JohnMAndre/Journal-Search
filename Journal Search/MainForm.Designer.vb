@@ -262,63 +262,54 @@ Partial Class MainForm
         Me.Column1.DataPropertyName = "JournalName"
         Me.Column1.HeaderText = "Journal name"
         Me.Column1.Name = "Column1"
-        Me.Column1.ReadOnly = True
         '
         'Column2
         '
         Me.Column2.DataPropertyName = "PublisherName"
         Me.Column2.HeaderText = "Publisher"
         Me.Column2.Name = "Column2"
-        Me.Column2.ReadOnly = True
         '
         'Column3
         '
         Me.Column3.DataPropertyName = "ISSNs"
         Me.Column3.HeaderText = "ISSNs"
         Me.Column3.Name = "Column3"
-        Me.Column3.ReadOnly = True
         '
         'Column5
         '
         Me.Column5.DataPropertyName = "Source"
         Me.Column5.HeaderText = "Source"
         Me.Column5.Name = "Column5"
-        Me.Column5.ReadOnly = True
         '
         'Column6
         '
         Me.Column6.DataPropertyName = "Ranking"
         Me.Column6.HeaderText = "Ranking"
         Me.Column6.Name = "Column6"
-        Me.Column6.ReadOnly = True
         '
         'Column7
         '
         Me.Column7.DataPropertyName = "Rating"
         Me.Column7.HeaderText = "Rating"
         Me.Column7.Name = "Column7"
-        Me.Column7.ReadOnly = True
         '
         'Column8
         '
         Me.Column8.DataPropertyName = "HIndex"
         Me.Column8.HeaderText = "H-Index"
         Me.Column8.Name = "Column8"
-        Me.Column8.ReadOnly = True
         '
         'Column9
         '
         Me.Column9.DataPropertyName = "Country"
         Me.Column9.HeaderText = "Country"
         Me.Column9.Name = "Column9"
-        Me.Column9.ReadOnly = True
         '
         'Column10
         '
         Me.Column10.DataPropertyName = "Categories"
         Me.Column10.HeaderText = "Categories"
         Me.Column10.Name = "Column10"
-        Me.Column10.ReadOnly = True
         '
         'Column12
         '
