@@ -319,21 +319,25 @@ Partial Class MainForm
         '
         'Column4
         '
+        Me.Column4.DataPropertyName = "InfoURL"
         Me.Column4.HeaderText = "InfoURL"
         Me.Column4.Name = "Column4"
         '
         'Column11
         '
+        Me.Column11.DataPropertyName = "SubmitURL"
         Me.Column11.HeaderText = "SubmitURL"
         Me.Column11.Name = "Column11"
         '
         'Column14
         '
+        Me.Column14.DataPropertyName = "SubmitHistory"
         Me.Column14.HeaderText = "SubmitHistory"
         Me.Column14.Name = "Column14"
         '
         'Column13
         '
+        Me.Column13.DataPropertyName = "APC"
         Me.Column13.HeaderText = "APC"
         Me.Column13.Name = "Column13"
         '
