@@ -24,23 +24,13 @@ Partial Class MainForm
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainForm))
         Me.dgvData = New System.Windows.Forms.DataGridView()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NotesColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.txtFilter = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.btnFilter = New System.Windows.Forms.Button()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExitWithoutSavingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportUpdateDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddOneEntryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -56,7 +46,21 @@ Partial Class MainForm
         Me.cboFilterColumn = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.cboMatchType = New System.Windows.Forms.ComboBox()
-        Me.ExitWithoutSavingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column12 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NotesColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.dgvData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -68,87 +72,12 @@ Partial Class MainForm
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvData.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column12, Me.NotesColumn})
+        Me.dgvData.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column12, Me.Column4, Me.Column11, Me.Column14, Me.Column13, Me.NotesColumn})
         Me.dgvData.Location = New System.Drawing.Point(0, 74)
         Me.dgvData.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvData.Name = "dgvData"
         Me.dgvData.Size = New System.Drawing.Size(1154, 474)
         Me.dgvData.TabIndex = 0
-        '
-        'Column1
-        '
-        Me.Column1.DataPropertyName = "JournalName"
-        Me.Column1.HeaderText = "Journal name"
-        Me.Column1.Name = "Column1"
-        Me.Column1.ReadOnly = True
-        '
-        'Column2
-        '
-        Me.Column2.DataPropertyName = "PublisherName"
-        Me.Column2.HeaderText = "Publisher"
-        Me.Column2.Name = "Column2"
-        Me.Column2.ReadOnly = True
-        '
-        'Column3
-        '
-        Me.Column3.DataPropertyName = "ISSNs"
-        Me.Column3.HeaderText = "ISSNs"
-        Me.Column3.Name = "Column3"
-        Me.Column3.ReadOnly = True
-        '
-        'Column5
-        '
-        Me.Column5.DataPropertyName = "Source"
-        Me.Column5.HeaderText = "Source"
-        Me.Column5.Name = "Column5"
-        Me.Column5.ReadOnly = True
-        '
-        'Column6
-        '
-        Me.Column6.DataPropertyName = "Ranking"
-        Me.Column6.HeaderText = "Ranking"
-        Me.Column6.Name = "Column6"
-        Me.Column6.ReadOnly = True
-        '
-        'Column7
-        '
-        Me.Column7.DataPropertyName = "Rating"
-        Me.Column7.HeaderText = "Rating"
-        Me.Column7.Name = "Column7"
-        Me.Column7.ReadOnly = True
-        '
-        'Column8
-        '
-        Me.Column8.DataPropertyName = "HIndex"
-        Me.Column8.HeaderText = "H-Index"
-        Me.Column8.Name = "Column8"
-        Me.Column8.ReadOnly = True
-        '
-        'Column9
-        '
-        Me.Column9.DataPropertyName = "Country"
-        Me.Column9.HeaderText = "Country"
-        Me.Column9.Name = "Column9"
-        Me.Column9.ReadOnly = True
-        '
-        'Column10
-        '
-        Me.Column10.DataPropertyName = "Categories"
-        Me.Column10.HeaderText = "Categories"
-        Me.Column10.Name = "Column10"
-        Me.Column10.ReadOnly = True
-        '
-        'Column12
-        '
-        Me.Column12.DataPropertyName = "Areas"
-        Me.Column12.HeaderText = "Areas"
-        Me.Column12.Name = "Column12"
-        '
-        'NotesColumn
-        '
-        Me.NotesColumn.DataPropertyName = "Notes"
-        Me.NotesColumn.HeaderText = "Notes"
-        Me.NotesColumn.Name = "NotesColumn"
         '
         'txtFilter
         '
@@ -203,6 +132,12 @@ Partial Class MainForm
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
         Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.ExitToolStripMenuItem.Text = "E&xit (saving changes)"
+        '
+        'ExitWithoutSavingToolStripMenuItem
+        '
+        Me.ExitWithoutSavingToolStripMenuItem.Name = "ExitWithoutSavingToolStripMenuItem"
+        Me.ExitWithoutSavingToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.ExitWithoutSavingToolStripMenuItem.Text = "Exit &without saving"
         '
         'EditToolStripMenuItem
         '
@@ -322,11 +257,100 @@ Partial Class MainForm
         Me.cboMatchType.Size = New System.Drawing.Size(106, 24)
         Me.cboMatchType.TabIndex = 11
         '
-        'ExitWithoutSavingToolStripMenuItem
+        'Column1
         '
-        Me.ExitWithoutSavingToolStripMenuItem.Name = "ExitWithoutSavingToolStripMenuItem"
-        Me.ExitWithoutSavingToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
-        Me.ExitWithoutSavingToolStripMenuItem.Text = "Exit &without saving"
+        Me.Column1.DataPropertyName = "JournalName"
+        Me.Column1.HeaderText = "Journal name"
+        Me.Column1.Name = "Column1"
+        Me.Column1.ReadOnly = True
+        '
+        'Column2
+        '
+        Me.Column2.DataPropertyName = "PublisherName"
+        Me.Column2.HeaderText = "Publisher"
+        Me.Column2.Name = "Column2"
+        Me.Column2.ReadOnly = True
+        '
+        'Column3
+        '
+        Me.Column3.DataPropertyName = "ISSNs"
+        Me.Column3.HeaderText = "ISSNs"
+        Me.Column3.Name = "Column3"
+        Me.Column3.ReadOnly = True
+        '
+        'Column5
+        '
+        Me.Column5.DataPropertyName = "Source"
+        Me.Column5.HeaderText = "Source"
+        Me.Column5.Name = "Column5"
+        Me.Column5.ReadOnly = True
+        '
+        'Column6
+        '
+        Me.Column6.DataPropertyName = "Ranking"
+        Me.Column6.HeaderText = "Ranking"
+        Me.Column6.Name = "Column6"
+        Me.Column6.ReadOnly = True
+        '
+        'Column7
+        '
+        Me.Column7.DataPropertyName = "Rating"
+        Me.Column7.HeaderText = "Rating"
+        Me.Column7.Name = "Column7"
+        Me.Column7.ReadOnly = True
+        '
+        'Column8
+        '
+        Me.Column8.DataPropertyName = "HIndex"
+        Me.Column8.HeaderText = "H-Index"
+        Me.Column8.Name = "Column8"
+        Me.Column8.ReadOnly = True
+        '
+        'Column9
+        '
+        Me.Column9.DataPropertyName = "Country"
+        Me.Column9.HeaderText = "Country"
+        Me.Column9.Name = "Column9"
+        Me.Column9.ReadOnly = True
+        '
+        'Column10
+        '
+        Me.Column10.DataPropertyName = "Categories"
+        Me.Column10.HeaderText = "Categories"
+        Me.Column10.Name = "Column10"
+        Me.Column10.ReadOnly = True
+        '
+        'Column12
+        '
+        Me.Column12.DataPropertyName = "Areas"
+        Me.Column12.HeaderText = "Areas"
+        Me.Column12.Name = "Column12"
+        '
+        'Column4
+        '
+        Me.Column4.HeaderText = "InfoURL"
+        Me.Column4.Name = "Column4"
+        '
+        'Column11
+        '
+        Me.Column11.HeaderText = "SubmitURL"
+        Me.Column11.Name = "Column11"
+        '
+        'Column14
+        '
+        Me.Column14.HeaderText = "SubmitHistory"
+        Me.Column14.Name = "Column14"
+        '
+        'Column13
+        '
+        Me.Column13.HeaderText = "APC"
+        Me.Column13.Name = "Column13"
+        '
+        'NotesColumn
+        '
+        Me.NotesColumn.DataPropertyName = "Notes"
+        Me.NotesColumn.HeaderText = "Notes"
+        Me.NotesColumn.Name = "NotesColumn"
         '
         'MainForm
         '
@@ -378,6 +402,10 @@ Partial Class MainForm
     Friend WithEvents prgStatusBar As ToolStripProgressBar
     Friend WithEvents AddOneEntryToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents cboFilterColumn As ComboBox
+    Friend WithEvents Label2 As Label
+    Friend WithEvents cboMatchType As ComboBox
+    Friend WithEvents MatchSelectedJournalNameToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ExitWithoutSavingToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents Column3 As DataGridViewTextBoxColumn
@@ -388,9 +416,9 @@ Partial Class MainForm
     Friend WithEvents Column9 As DataGridViewTextBoxColumn
     Friend WithEvents Column10 As DataGridViewTextBoxColumn
     Friend WithEvents Column12 As DataGridViewTextBoxColumn
+    Friend WithEvents Column4 As DataGridViewTextBoxColumn
+    Friend WithEvents Column11 As DataGridViewTextBoxColumn
+    Friend WithEvents Column14 As DataGridViewTextBoxColumn
+    Friend WithEvents Column13 As DataGridViewTextBoxColumn
     Friend WithEvents NotesColumn As DataGridViewTextBoxColumn
-    Friend WithEvents Label2 As Label
-    Friend WithEvents cboMatchType As ComboBox
-    Friend WithEvents MatchSelectedJournalNameToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ExitWithoutSavingToolStripMenuItem As ToolStripMenuItem
 End Class

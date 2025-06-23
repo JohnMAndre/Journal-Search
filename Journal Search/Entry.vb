@@ -28,5 +28,9 @@ Public Class Entry
     Public Property Country As String = String.Empty
     Public Property Categories As String = String.Empty
     Public Property Areas As String = String.Empty
+    Public Property InfoURL As String = String.Empty '-- User-entered, maintained in separate file from main data
+    Public Property SubmitURL As String = String.Empty '-- User-entered, maintained in separate file from main data
+    Public Property SubmitHistory As String = String.Empty '-- User-entered, maintained in separate file from main data
+    Public Property APC As String = String.Empty '-- User-entered, maintained in separate file from main data
     Public Property Notes As String = String.Empty '-- User-entered, maintained in separate file from main data
 End Class
