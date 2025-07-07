@@ -3,8 +3,10 @@ Imports System.Xml
 
 Public Class MainForm
     Private m_intCounter As Integer
+    Private m_boolSkipPersistDataOnSave As Boolean = True '-- default to true unless overridden using menu option
 
     Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+        m_boolSkipPersistDataOnSave = True
         Me.Close()
     End Sub
 
@@ -41,34 +43,9 @@ Public Class MainForm
 
         AddNotesToJournals(JournalList)
 
-        ''-- Now we must add the notes
-        'If System.IO.File.Exists("JournalSearchDataExtra.xml") Then
-        '    xDoc.Load("JournalSearchDataExtra.xml")
-        '    xList = xDoc.SelectNodes("//JournalNote")
-        '    Dim strName As String
-        '    Dim strNotes As String
-
-        '    m_intCounter = 0
-        '    prgStatusBar.Maximum = xList.Count
-
-        '    For Each xElement As XmlElement In xList
-        '        m_intCounter += 1
-        '        UpdateLoadingProgress()
-
-        '        strName = xElement.GetAttribute("JournalName").ToLower()
-        '        strNotes = xElement.InnerText
-        '        If strNotes.Length > 0 Then
-        '            For Each obj In JournalList
-        '                If obj.JournalName.ToLower() = strName Then
-        '                    obj.Notes = xElement.InnerText
-        '                End If
-        '            Next
-        '        End If
-        '    Next
-        'End If
-
         UpdateLoadingProgress()
 
+        dgvData.AutoGenerateColumns = False
         dgvData.DataSource = JournalList
 
         Me.Text = "Journal Search - " & JournalList.Count().ToString("#,##0")
@@ -102,7 +79,9 @@ Public Class MainForm
     End Sub
 
     Private Sub MainForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
-        PersistData()
+        If m_boolSkipPersistDataOnSave Then
+            PersistData()
+        End If
     End Sub
     Private Sub PersistData()
         '-- save back data to main data file
@@ -110,11 +89,14 @@ Public Class MainForm
         Dim xDoc2 As New Xml.XmlDocument()
         Dim root1 As Xml.XmlElement = xDoc1.AppendChild(xDoc1.CreateElement("Journals"))
         Dim root2 As Xml.XmlElement = xDoc2.AppendChild(xDoc2.CreateElement("JournalNotes"))
-        Dim element1 As Xml.XmlElement
-        Dim element2 As Xml.XmlElement
+        Dim element1, xUserEntered, xInfoURL, xSubmitURL, xSubmitHistory, xAPC, xNotes As Xml.XmlElement
+        Dim boolAddUserEnteredData As Boolean
+
         For Each obj As Entry In JournalList
+            '-- Main data file
             element1 = xDoc1.CreateElement("Journal")
-            element2 = xDoc2.CreateElement("JournalNote")
+            xUserEntered = xDoc2.CreateElement("JournalNote")
+            boolAddUserEnteredData = False '-- default to not adding
 
             element1.SetAttribute("JournalName", obj.JournalName)
             element1.SetAttribute("PublisherName", obj.PublisherName)
@@ -129,12 +111,44 @@ Public Class MainForm
 
             root1.AppendChild(element1)
 
-            '-- Notes
-            If obj.Notes IsNot Nothing AndAlso obj.Notes.Length > 0 Then
-                element2.SetAttribute("JournalName", obj.JournalName)
-                element2.InnerText = obj.Notes
-                root2.AppendChild(element2)
+
+            '-- Notes and other user-entered info in alternate file
+            xUserEntered.SetAttribute("JournalName", obj.JournalName)
+
+            If obj.InfoURL IsNot Nothing AndAlso obj.InfoURL.Length > 0 Then
+                xInfoURL = xUserEntered.AppendChild(xDoc2.CreateElement("InfoURL"))
+                xInfoURL.InnerText = obj.InfoURL
+                boolAddUserEnteredData = True
             End If
+
+            If obj.SubmitURL IsNot Nothing AndAlso obj.SubmitURL.Length > 0 Then
+                xSubmitURL = xUserEntered.AppendChild(xDoc2.CreateElement("SubmitURL"))
+                xSubmitURL.InnerText = obj.SubmitURL
+                boolAddUserEnteredData = True
+            End If
+
+            If obj.SubmitHistory IsNot Nothing AndAlso obj.SubmitHistory.Length > 0 Then
+                xSubmitHistory = xUserEntered.AppendChild(xDoc2.CreateElement("SubmitHistory"))
+                xSubmitHistory.InnerText = obj.SubmitHistory
+                boolAddUserEnteredData = True
+            End If
+
+            If obj.APC IsNot Nothing AndAlso obj.APC.Length > 0 Then
+                xAPC = xUserEntered.AppendChild(xDoc2.CreateElement("APC"))
+                xAPC.InnerText = obj.APC
+                boolAddUserEnteredData = True
+            End If
+
+            If obj.Notes IsNot Nothing AndAlso obj.Notes.Length > 0 Then
+                xNotes = xUserEntered.AppendChild(xDoc2.CreateElement("Notes"))
+                xNotes.InnerText = obj.Notes
+                boolAddUserEnteredData = True
+            End If
+
+            If boolAddUserEnteredData Then
+                root2.AppendChild(xUserEntered)
+            End If
+
         Next
 
         xDoc1.Save("JournalSearchData.xml")
@@ -705,32 +719,32 @@ Public Class MainForm
 
     End Sub
 
-    Private Sub dgvData_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgvData.CellEndEdit
-        '-- Persist notes (if that was the cell edited)
-        If dgvData.Columns(e.ColumnIndex).DataPropertyName = NotesColumn.DataPropertyName Then
-            '-- persist notes
-            Dim strNotes As String = dgvData.CurrentCell.Value
-            Dim obj As Entry = dgvData.Rows(e.RowIndex).DataBoundItem
-            Dim strJournal As String = obj.JournalName
-            PersistChangedNotes(strJournal, strNotes)
-        End If
-    End Sub
-    Private Sub PersistChangedNotes(journalName As String, notes As String)
-        Dim xDoc2 As New Xml.XmlDocument()
-        xDoc2.Load("JournalSearchDataExtra.xml")
-        Dim root2 As Xml.XmlElement = xDoc2.DocumentElement()
-        Dim element2 As Xml.XmlElement = root2.SelectSingleNode("//JournalNote[@JournalName='" & journalName & "']")
+    'Private Sub dgvData_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles dgvData.CellEndEdit
+    '    '-- Persist notes (if that was the cell edited)
+    '    If dgvData.Columns(e.ColumnIndex).DataPropertyName = NotesColumn.DataPropertyName Then
+    '        '-- persist notes
+    '        Dim strNotes As String = dgvData.CurrentCell.Value
+    '        Dim obj As Entry = dgvData.Rows(e.RowIndex).DataBoundItem
+    '        Dim strJournal As String = obj.JournalName
+    '        PersistChangedNotes(strJournal, strNotes)
+    '    End If
+    'End Sub
+    'Private Sub PersistChangedNotes(journalName As String, notes As String)
+    '    Dim xDoc2 As New Xml.XmlDocument()
+    '    xDoc2.Load("JournalSearchDataExtra.xml")
+    '    Dim root2 As Xml.XmlElement = xDoc2.DocumentElement()
+    '    Dim element2 As Xml.XmlElement = root2.SelectSingleNode("//JournalNote[@JournalName='" & journalName & "']")
 
-        If element2 Is Nothing Then
-            element2 = root2.AppendChild(xDoc2.CreateElement("JournalNote"))
-        End If
+    '    If element2 Is Nothing Then
+    '        element2 = root2.AppendChild(xDoc2.CreateElement("JournalNote"))
+    '    End If
 
-        element2.SetAttribute("JournalName", journalName)
-        element2.InnerText = notes
+    '    element2.SetAttribute("JournalName", journalName)
+    '    element2.InnerText = notes
 
-        xDoc2.Save("JournalSearchDataExtra.xml")
+    '    xDoc2.Save("JournalSearchDataExtra.xml")
 
-    End Sub
+    'End Sub
 
     Private Sub MatchSelectedJournalNameToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MatchSelectedJournalNameToolStripMenuItem.Click
         Try
@@ -744,4 +758,8 @@ Public Class MainForm
 
     End Sub
 
+    Private Sub ExitWithoutSavingToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitWithoutSavingToolStripMenuItem.Click
+        m_boolSkipPersistDataOnSave = False
+        Me.Close()
+    End Sub
 End Class
