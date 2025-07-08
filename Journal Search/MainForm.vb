@@ -762,4 +762,16 @@ Public Class MainForm
         m_boolSkipPersistDataOnSave = False
         Me.Close()
     End Sub
+
+    Private Sub ChangeFieldsToTitleCaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeFieldsToTitleCaseToolStripMenuItem.Click
+        '-- Change "JOURNAL OF FINANCIAL ECONOMICS" to "Journal of Financial Economics" but do for all fields for flagged journals
+    End Sub
+
+    Private Sub LaunchInfoURLToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LaunchInfoURLToolStripMenuItem.Click
+        'System.Diagnostics.Process.Start()
+    End Sub
+
+    Private Sub LaunchSubmitURLToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LaunchSubmitURLToolStripMenuItem.Click
+        'System.Diagnostics.Process.Start()
+    End Sub
 End Class

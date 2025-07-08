@@ -36,7 +36,7 @@ Module Globals
             xDoc.Load("JournalSearchDataExtra.xml")
             xList = xDoc.SelectNodes("//JournalNote")
             Dim strName As String
-            Dim strNotes, strInfoURL, strSubmitURL, strSubmitHistory, strAPC As String
+            Dim strNotes, strInfoURL, strSubmitURL, strSubmitHistory, strAPC, strSubmitFee As String
 
             For Each xElement As XmlElement In xList
                 strName = xElement.GetAttribute("JournalName").ToLower()
@@ -52,6 +52,11 @@ Module Globals
                     xElement1 = xElement.SelectSingleNode("APC")
                     If xElement1 IsNot Nothing Then
                         strAPC = xElement1.InnerText
+                    End If
+
+                    xElement1 = xElement.SelectSingleNode("SubmitFee")
+                    If xElement1 IsNot Nothing Then
+                        strSubmitFee = xElement1.InnerText
                     End If
 
                     xElement1 = xElement.SelectSingleNode("SubmitHistory")
@@ -84,18 +89,18 @@ Module Globals
                             '-- Could be multiple (because the same journal could be in here from multiple data sources) so cannot exit this loop early
                         End If
                     Next
-                Else
-                    '-- old logic replaced June 2025 but maintained for old data sources
-                    strNotes = xElement.InnerText
-                    If strNotes.Length > 0 Then
-                        For Each obj In journals
-                            If obj.JournalName.ToLower() = strName OrElse
-                               obj.JournalName.Replace(DISCONTINUED_IDENTIFIER, String.Empty).ToLower() = strName.Replace(DISCONTINUED_IDENTIFIER, String.Empty) Then
-                                obj.Notes = xElement.InnerText
-                                '-- Could be multiple (because the same journal could be in here from multiple data sources) so cannot exit this loop early
-                            End If
-                        Next
-                    End If
+                    'Else
+                    '    '-- old logic replaced June 2025 but maintained for old data sources
+                    '    strNotes = xElement.InnerText
+                    '    If strNotes.Length > 0 Then
+                    '        For Each obj In journals
+                    '            If obj.JournalName.ToLower() = strName OrElse
+                    '               obj.JournalName.Replace(DISCONTINUED_IDENTIFIER, String.Empty).ToLower() = strName.Replace(DISCONTINUED_IDENTIFIER, String.Empty) Then
+                    '                obj.Notes = xElement.InnerText
+                    '                '-- Could be multiple (because the same journal could be in here from multiple data sources) so cannot exit this loop early
+                    '            End If
+                    '        Next
+                    '    End If
                 End If
 
 

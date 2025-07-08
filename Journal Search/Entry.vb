@@ -13,9 +13,14 @@ Public Class Entry
         Me.Country = xElement.GetAttribute("Country")
         Me.Categories = xElement.GetAttribute("Categories")
         Me.Areas = xElement.GetAttribute("Areas")
-        Me.Notes = xElement.GetAttribute("Notes")
+        '-- Remember, user fields are in another xml doc, not the main one
     End Sub
     Public Sub New()
+
+    End Sub
+    Public Sub LoadUserFields(xElement As XmlElement)
+        '-- Remember, user fields are in another xml doc, not the main one, this is the user element
+
 
     End Sub
     Public Property JournalName As String = String.Empty
@@ -31,6 +36,9 @@ Public Class Entry
     Public Property InfoURL As String = String.Empty '-- User-entered, maintained in separate file from main data
     Public Property SubmitURL As String = String.Empty '-- User-entered, maintained in separate file from main data
     Public Property SubmitHistory As String = String.Empty '-- User-entered, maintained in separate file from main data
+    Public Property SubmitFee As String = String.Empty '-- User-entered, maintained in separate file from main data
     Public Property APC As String = String.Empty '-- User-entered, maintained in separate file from main data
     Public Property Notes As String = String.Empty '-- User-entered, maintained in separate file from main data
+    Public Property Flagged As Boolean = False '-- temporary, only while running, used to do other action (replace all ___ for flagged)
+
 End Class

@@ -46,6 +46,11 @@ Partial Class MainForm
         Me.cboFilterColumn = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.cboMatchType = New System.Windows.Forms.ComboBox()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ActionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LaunchInfoURLToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LaunchSubmitURLToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Column15 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -61,6 +66,7 @@ Partial Class MainForm
         Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NotesColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ChangeFieldsToTitleCaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.dgvData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -72,7 +78,7 @@ Partial Class MainForm
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvData.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column12, Me.Column4, Me.Column11, Me.Column14, Me.Column13, Me.NotesColumn})
+        Me.dgvData.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column15, Me.Column1, Me.Column2, Me.Column3, Me.Column5, Me.Column6, Me.Column7, Me.Column8, Me.Column9, Me.Column10, Me.Column12, Me.Column4, Me.Column11, Me.Column14, Me.Column13, Me.NotesColumn})
         Me.dgvData.Location = New System.Drawing.Point(0, 74)
         Me.dgvData.Margin = New System.Windows.Forms.Padding(4)
         Me.dgvData.Name = "dgvData"
@@ -112,7 +118,7 @@ Partial Class MainForm
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem, Me.ViewToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem, Me.ViewToolStripMenuItem, Me.ToolStripMenuItem1, Me.ActionToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(7, 2, 0, 2)
@@ -257,6 +263,40 @@ Partial Class MainForm
         Me.cboMatchType.Size = New System.Drawing.Size(106, 24)
         Me.cboMatchType.TabIndex = 11
         '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(54, 20)
+        Me.ToolStripMenuItem1.Text = "&Action"
+        '
+        'ActionToolStripMenuItem
+        '
+        Me.ActionToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LaunchInfoURLToolStripMenuItem, Me.LaunchSubmitURLToolStripMenuItem, Me.ChangeFieldsToTitleCaseToolStripMenuItem})
+        Me.ActionToolStripMenuItem.Name = "ActionToolStripMenuItem"
+        Me.ActionToolStripMenuItem.Size = New System.Drawing.Size(54, 20)
+        Me.ActionToolStripMenuItem.Text = "&Action"
+        '
+        'LaunchInfoURLToolStripMenuItem
+        '
+        Me.LaunchInfoURLToolStripMenuItem.Name = "LaunchInfoURLToolStripMenuItem"
+        Me.LaunchInfoURLToolStripMenuItem.Size = New System.Drawing.Size(215, 22)
+        Me.LaunchInfoURLToolStripMenuItem.Text = "Launch &Info URL"
+        '
+        'LaunchSubmitURLToolStripMenuItem
+        '
+        Me.LaunchSubmitURLToolStripMenuItem.Name = "LaunchSubmitURLToolStripMenuItem"
+        Me.LaunchSubmitURLToolStripMenuItem.Size = New System.Drawing.Size(215, 22)
+        Me.LaunchSubmitURLToolStripMenuItem.Text = "Launch &Submit URL"
+        '
+        'Column15
+        '
+        Me.Column15.DataPropertyName = "Flagged"
+        Me.Column15.HeaderText = "Flag"
+        Me.Column15.Name = "Column15"
+        Me.Column15.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column15.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Column15.Width = 40
+        '
         'Column1
         '
         Me.Column1.DataPropertyName = "JournalName"
@@ -347,6 +387,12 @@ Partial Class MainForm
         Me.NotesColumn.HeaderText = "Notes"
         Me.NotesColumn.Name = "NotesColumn"
         '
+        'ChangeFieldsToTitleCaseToolStripMenuItem
+        '
+        Me.ChangeFieldsToTitleCaseToolStripMenuItem.Name = "ChangeFieldsToTitleCaseToolStripMenuItem"
+        Me.ChangeFieldsToTitleCaseToolStripMenuItem.Size = New System.Drawing.Size(215, 22)
+        Me.ChangeFieldsToTitleCaseToolStripMenuItem.Text = "Change title case (flagged)"
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
@@ -401,6 +447,8 @@ Partial Class MainForm
     Friend WithEvents cboMatchType As ComboBox
     Friend WithEvents MatchSelectedJournalNameToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExitWithoutSavingToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
+    Friend WithEvents Column15 As DataGridViewCheckBoxColumn
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
     Friend WithEvents Column3 As DataGridViewTextBoxColumn
@@ -416,4 +464,8 @@ Partial Class MainForm
     Friend WithEvents Column14 As DataGridViewTextBoxColumn
     Friend WithEvents Column13 As DataGridViewTextBoxColumn
     Friend WithEvents NotesColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ActionToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LaunchInfoURLToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents LaunchSubmitURLToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ChangeFieldsToTitleCaseToolStripMenuItem As ToolStripMenuItem
 End Class
