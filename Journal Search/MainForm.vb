@@ -785,9 +785,9 @@ Public Class MainForm
             For Each entry As Entry In JournalList
                 If entry.JournalName.Contains("&") OrElse entry.JournalName.Contains("&amp;") Then
                     intCounter += 1
+                    entry.JournalName = entry.JournalName.Replace("&amp;", "and") '-- must be first
+                    entry.JournalName = entry.JournalName.Replace("&", "and")
                 End If
-                entry.JournalName = entry.JournalName.Replace("&", "and")
-                entry.JournalName = entry.JournalName.Replace("&amp;", "and")
             Next
         End If
         MessageBox.Show("Entries updated: " & intCounter.ToString("#,##0"))
