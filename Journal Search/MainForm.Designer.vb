@@ -24,32 +24,6 @@ Partial Class MainForm
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainForm))
         Me.dgvData = New System.Windows.Forms.DataGridView()
-        Me.txtFilter = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.btnFilter = New System.Windows.Forms.Button()
-        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
-        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ExitWithoutSavingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ImportUpdateDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AddOneEntryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ClearFilterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MatchSelectedJournalNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AutosizeColumnsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MinisizeColumnsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.lblFilteredCount = New System.Windows.Forms.Label()
-        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.lblStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.prgStatusBar = New System.Windows.Forms.ToolStripProgressBar()
-        Me.cboFilterColumn = New System.Windows.Forms.ComboBox()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.cboMatchType = New System.Windows.Forms.ComboBox()
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ActionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.LaunchInfoURLToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.LaunchSubmitURLToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Column15 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -66,7 +40,32 @@ Partial Class MainForm
         Me.Column14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.NotesColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.txtFilter = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.btnFilter = New System.Windows.Forms.Button()
+        Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
+        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExitWithoutSavingToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImportUpdateDatabaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddOneEntryToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ClearFilterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MatchSelectedJournalNameToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AutosizeColumnsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MinisizeColumnsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ActionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LaunchInfoURLToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LaunchSubmitURLToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ChangeFieldsToTitleCaseToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.lblFilteredCount = New System.Windows.Forms.Label()
+        Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.lblStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.prgStatusBar = New System.Windows.Forms.ToolStripProgressBar()
+        Me.cboFilterColumn = New System.Windows.Forms.ComboBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.cboMatchType = New System.Windows.Forms.ComboBox()
         CType(Me.dgvData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -84,209 +83,6 @@ Partial Class MainForm
         Me.dgvData.Name = "dgvData"
         Me.dgvData.Size = New System.Drawing.Size(1154, 474)
         Me.dgvData.TabIndex = 0
-        '
-        'txtFilter
-        '
-        Me.txtFilter.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.txtFilter.Location = New System.Drawing.Point(58, 42)
-        Me.txtFilter.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtFilter.Name = "txtFilter"
-        Me.txtFilter.Size = New System.Drawing.Size(525, 22)
-        Me.txtFilter.TabIndex = 1
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(14, 46)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(40, 16)
-        Me.Label1.TabIndex = 2
-        Me.Label1.Text = "Filter:"
-        '
-        'btnFilter
-        '
-        Me.btnFilter.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.btnFilter.Location = New System.Drawing.Point(907, 38)
-        Me.btnFilter.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnFilter.Name = "btnFilter"
-        Me.btnFilter.Size = New System.Drawing.Size(38, 28)
-        Me.btnFilter.TabIndex = 3
-        Me.btnFilter.Text = ">>"
-        Me.btnFilter.UseVisualStyleBackColor = True
-        '
-        'MenuStrip1
-        '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem, Me.ViewToolStripMenuItem, Me.ToolStripMenuItem1, Me.ActionToolStripMenuItem})
-        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
-        Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(7, 2, 0, 2)
-        Me.MenuStrip1.Size = New System.Drawing.Size(1154, 24)
-        Me.MenuStrip1.TabIndex = 4
-        Me.MenuStrip1.Text = "MenuStrip1"
-        '
-        'FileToolStripMenuItem
-        '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExitToolStripMenuItem, Me.ExitWithoutSavingToolStripMenuItem})
-        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
-        Me.FileToolStripMenuItem.Text = "&File"
-        '
-        'ExitToolStripMenuItem
-        '
-        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
-        Me.ExitToolStripMenuItem.Text = "E&xit (saving changes)"
-        '
-        'ExitWithoutSavingToolStripMenuItem
-        '
-        Me.ExitWithoutSavingToolStripMenuItem.Name = "ExitWithoutSavingToolStripMenuItem"
-        Me.ExitWithoutSavingToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
-        Me.ExitWithoutSavingToolStripMenuItem.Text = "Exit &without saving"
-        '
-        'EditToolStripMenuItem
-        '
-        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportUpdateDatabaseToolStripMenuItem, Me.AddOneEntryToolStripMenuItem, Me.ClearFilterToolStripMenuItem, Me.MatchSelectedJournalNameToolStripMenuItem})
-        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
-        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
-        Me.EditToolStripMenuItem.Text = "&Data"
-        '
-        'ImportUpdateDatabaseToolStripMenuItem
-        '
-        Me.ImportUpdateDatabaseToolStripMenuItem.Name = "ImportUpdateDatabaseToolStripMenuItem"
-        Me.ImportUpdateDatabaseToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
-        Me.ImportUpdateDatabaseToolStripMenuItem.Text = "Import / update database..."
-        '
-        'AddOneEntryToolStripMenuItem
-        '
-        Me.AddOneEntryToolStripMenuItem.Name = "AddOneEntryToolStripMenuItem"
-        Me.AddOneEntryToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.AddOneEntryToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
-        Me.AddOneEntryToolStripMenuItem.Text = "&Add one entry"
-        '
-        'ClearFilterToolStripMenuItem
-        '
-        Me.ClearFilterToolStripMenuItem.Name = "ClearFilterToolStripMenuItem"
-        Me.ClearFilterToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Q), System.Windows.Forms.Keys)
-        Me.ClearFilterToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
-        Me.ClearFilterToolStripMenuItem.Text = "&Clear filter"
-        '
-        'MatchSelectedJournalNameToolStripMenuItem
-        '
-        Me.MatchSelectedJournalNameToolStripMenuItem.Name = "MatchSelectedJournalNameToolStripMenuItem"
-        Me.MatchSelectedJournalNameToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.M), System.Windows.Forms.Keys)
-        Me.MatchSelectedJournalNameToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
-        Me.MatchSelectedJournalNameToolStripMenuItem.Text = "Match selected journal name"
-        '
-        'ViewToolStripMenuItem
-        '
-        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AutosizeColumnsToolStripMenuItem, Me.MinisizeColumnsToolStripMenuItem})
-        Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
-        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
-        Me.ViewToolStripMenuItem.Text = "&View"
-        '
-        'AutosizeColumnsToolStripMenuItem
-        '
-        Me.AutosizeColumnsToolStripMenuItem.Name = "AutosizeColumnsToolStripMenuItem"
-        Me.AutosizeColumnsToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
-        Me.AutosizeColumnsToolStripMenuItem.Size = New System.Drawing.Size(216, 22)
-        Me.AutosizeColumnsToolStripMenuItem.Text = "&Autosize columns"
-        '
-        'MinisizeColumnsToolStripMenuItem
-        '
-        Me.MinisizeColumnsToolStripMenuItem.Name = "MinisizeColumnsToolStripMenuItem"
-        Me.MinisizeColumnsToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.W), System.Windows.Forms.Keys)
-        Me.MinisizeColumnsToolStripMenuItem.Size = New System.Drawing.Size(216, 22)
-        Me.MinisizeColumnsToolStripMenuItem.Text = "&Mini-size columns"
-        '
-        'lblFilteredCount
-        '
-        Me.lblFilteredCount.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.lblFilteredCount.AutoSize = True
-        Me.lblFilteredCount.Location = New System.Drawing.Point(972, 46)
-        Me.lblFilteredCount.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.lblFilteredCount.Name = "lblFilteredCount"
-        Me.lblFilteredCount.Size = New System.Drawing.Size(0, 16)
-        Me.lblFilteredCount.TabIndex = 5
-        '
-        'StatusStrip1
-        '
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblStatusLabel1, Me.prgStatusBar})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 552)
-        Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(1154, 22)
-        Me.StatusStrip1.TabIndex = 7
-        Me.StatusStrip1.Text = "StatusStrip1"
-        '
-        'lblStatusLabel1
-        '
-        Me.lblStatusLabel1.Name = "lblStatusLabel1"
-        Me.lblStatusLabel1.Size = New System.Drawing.Size(0, 17)
-        '
-        'prgStatusBar
-        '
-        Me.prgStatusBar.Name = "prgStatusBar"
-        Me.prgStatusBar.Size = New System.Drawing.Size(400, 16)
-        Me.prgStatusBar.Visible = False
-        '
-        'cboFilterColumn
-        '
-        Me.cboFilterColumn.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cboFilterColumn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboFilterColumn.FormattingEnabled = True
-        Me.cboFilterColumn.Items.AddRange(New Object() {"(all columns)", "Journal name", "Publisher", "ISSN1", "Source", "Ranking", "Rating", "H-Index", "Country", "Categories", "Areas", "Notes"})
-        Me.cboFilterColumn.Location = New System.Drawing.Point(763, 40)
-        Me.cboFilterColumn.Name = "cboFilterColumn"
-        Me.cboFilterColumn.Size = New System.Drawing.Size(140, 24)
-        Me.cboFilterColumn.TabIndex = 8
-        '
-        'Label2
-        '
-        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(703, 46)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(55, 16)
-        Me.Label2.TabIndex = 9
-        Me.Label2.Text = "Column:"
-        '
-        'cboMatchType
-        '
-        Me.cboMatchType.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.cboMatchType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cboMatchType.FormattingEnabled = True
-        Me.cboMatchType.Items.AddRange(New Object() {"Match all", "Match any"})
-        Me.cboMatchType.Location = New System.Drawing.Point(590, 40)
-        Me.cboMatchType.Name = "cboMatchType"
-        Me.cboMatchType.Size = New System.Drawing.Size(106, 24)
-        Me.cboMatchType.TabIndex = 11
-        '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(54, 20)
-        Me.ToolStripMenuItem1.Text = "&Action"
-        '
-        'ActionToolStripMenuItem
-        '
-        Me.ActionToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LaunchInfoURLToolStripMenuItem, Me.LaunchSubmitURLToolStripMenuItem, Me.ChangeFieldsToTitleCaseToolStripMenuItem})
-        Me.ActionToolStripMenuItem.Name = "ActionToolStripMenuItem"
-        Me.ActionToolStripMenuItem.Size = New System.Drawing.Size(54, 20)
-        Me.ActionToolStripMenuItem.Text = "&Action"
-        '
-        'LaunchInfoURLToolStripMenuItem
-        '
-        Me.LaunchInfoURLToolStripMenuItem.Name = "LaunchInfoURLToolStripMenuItem"
-        Me.LaunchInfoURLToolStripMenuItem.Size = New System.Drawing.Size(215, 22)
-        Me.LaunchInfoURLToolStripMenuItem.Text = "Launch &Info URL"
-        '
-        'LaunchSubmitURLToolStripMenuItem
-        '
-        Me.LaunchSubmitURLToolStripMenuItem.Name = "LaunchSubmitURLToolStripMenuItem"
-        Me.LaunchSubmitURLToolStripMenuItem.Size = New System.Drawing.Size(215, 22)
-        Me.LaunchSubmitURLToolStripMenuItem.Text = "Launch &Submit URL"
         '
         'Column15
         '
@@ -387,11 +183,208 @@ Partial Class MainForm
         Me.NotesColumn.HeaderText = "Notes"
         Me.NotesColumn.Name = "NotesColumn"
         '
+        'txtFilter
+        '
+        Me.txtFilter.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.txtFilter.Location = New System.Drawing.Point(58, 42)
+        Me.txtFilter.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtFilter.Name = "txtFilter"
+        Me.txtFilter.Size = New System.Drawing.Size(525, 22)
+        Me.txtFilter.TabIndex = 1
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(14, 46)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(40, 16)
+        Me.Label1.TabIndex = 2
+        Me.Label1.Text = "Filter:"
+        '
+        'btnFilter
+        '
+        Me.btnFilter.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.btnFilter.Location = New System.Drawing.Point(907, 38)
+        Me.btnFilter.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnFilter.Name = "btnFilter"
+        Me.btnFilter.Size = New System.Drawing.Size(38, 28)
+        Me.btnFilter.TabIndex = 3
+        Me.btnFilter.Text = ">>"
+        Me.btnFilter.UseVisualStyleBackColor = True
+        '
+        'MenuStrip1
+        '
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem, Me.ViewToolStripMenuItem, Me.ActionToolStripMenuItem})
+        Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
+        Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(7, 2, 0, 2)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1154, 24)
+        Me.MenuStrip1.TabIndex = 4
+        Me.MenuStrip1.Text = "MenuStrip1"
+        '
+        'FileToolStripMenuItem
+        '
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ExitToolStripMenuItem, Me.ExitWithoutSavingToolStripMenuItem})
+        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.FileToolStripMenuItem.Text = "&File"
+        '
+        'ExitToolStripMenuItem
+        '
+        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.ExitToolStripMenuItem.Text = "E&xit (saving changes)"
+        '
+        'ExitWithoutSavingToolStripMenuItem
+        '
+        Me.ExitWithoutSavingToolStripMenuItem.Name = "ExitWithoutSavingToolStripMenuItem"
+        Me.ExitWithoutSavingToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.ExitWithoutSavingToolStripMenuItem.Text = "Exit &without saving"
+        '
+        'EditToolStripMenuItem
+        '
+        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportUpdateDatabaseToolStripMenuItem, Me.AddOneEntryToolStripMenuItem, Me.ClearFilterToolStripMenuItem, Me.MatchSelectedJournalNameToolStripMenuItem})
+        Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
+        Me.EditToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
+        Me.EditToolStripMenuItem.Text = "&Data"
+        '
+        'ImportUpdateDatabaseToolStripMenuItem
+        '
+        Me.ImportUpdateDatabaseToolStripMenuItem.Name = "ImportUpdateDatabaseToolStripMenuItem"
+        Me.ImportUpdateDatabaseToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.ImportUpdateDatabaseToolStripMenuItem.Text = "Import / update database..."
+        '
+        'AddOneEntryToolStripMenuItem
+        '
+        Me.AddOneEntryToolStripMenuItem.Name = "AddOneEntryToolStripMenuItem"
+        Me.AddOneEntryToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
+        Me.AddOneEntryToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.AddOneEntryToolStripMenuItem.Text = "&Add one entry"
+        '
+        'ClearFilterToolStripMenuItem
+        '
+        Me.ClearFilterToolStripMenuItem.Name = "ClearFilterToolStripMenuItem"
+        Me.ClearFilterToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Q), System.Windows.Forms.Keys)
+        Me.ClearFilterToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.ClearFilterToolStripMenuItem.Text = "&Clear filter"
+        '
+        'MatchSelectedJournalNameToolStripMenuItem
+        '
+        Me.MatchSelectedJournalNameToolStripMenuItem.Name = "MatchSelectedJournalNameToolStripMenuItem"
+        Me.MatchSelectedJournalNameToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.M), System.Windows.Forms.Keys)
+        Me.MatchSelectedJournalNameToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.MatchSelectedJournalNameToolStripMenuItem.Text = "Match selected journal name"
+        '
+        'ViewToolStripMenuItem
+        '
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AutosizeColumnsToolStripMenuItem, Me.MinisizeColumnsToolStripMenuItem})
+        Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.ViewToolStripMenuItem.Text = "&View"
+        '
+        'AutosizeColumnsToolStripMenuItem
+        '
+        Me.AutosizeColumnsToolStripMenuItem.Name = "AutosizeColumnsToolStripMenuItem"
+        Me.AutosizeColumnsToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
+        Me.AutosizeColumnsToolStripMenuItem.Size = New System.Drawing.Size(216, 22)
+        Me.AutosizeColumnsToolStripMenuItem.Text = "&Autosize columns"
+        '
+        'MinisizeColumnsToolStripMenuItem
+        '
+        Me.MinisizeColumnsToolStripMenuItem.Name = "MinisizeColumnsToolStripMenuItem"
+        Me.MinisizeColumnsToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.W), System.Windows.Forms.Keys)
+        Me.MinisizeColumnsToolStripMenuItem.Size = New System.Drawing.Size(216, 22)
+        Me.MinisizeColumnsToolStripMenuItem.Text = "&Mini-size columns"
+        '
+        'ActionToolStripMenuItem
+        '
+        Me.ActionToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LaunchInfoURLToolStripMenuItem, Me.LaunchSubmitURLToolStripMenuItem, Me.ChangeFieldsToTitleCaseToolStripMenuItem})
+        Me.ActionToolStripMenuItem.Name = "ActionToolStripMenuItem"
+        Me.ActionToolStripMenuItem.Size = New System.Drawing.Size(54, 20)
+        Me.ActionToolStripMenuItem.Text = "&Action"
+        '
+        'LaunchInfoURLToolStripMenuItem
+        '
+        Me.LaunchInfoURLToolStripMenuItem.Name = "LaunchInfoURLToolStripMenuItem"
+        Me.LaunchInfoURLToolStripMenuItem.Size = New System.Drawing.Size(215, 22)
+        Me.LaunchInfoURLToolStripMenuItem.Text = "Launch &Info URL"
+        '
+        'LaunchSubmitURLToolStripMenuItem
+        '
+        Me.LaunchSubmitURLToolStripMenuItem.Name = "LaunchSubmitURLToolStripMenuItem"
+        Me.LaunchSubmitURLToolStripMenuItem.Size = New System.Drawing.Size(215, 22)
+        Me.LaunchSubmitURLToolStripMenuItem.Text = "Launch &Submit URL"
+        '
         'ChangeFieldsToTitleCaseToolStripMenuItem
         '
         Me.ChangeFieldsToTitleCaseToolStripMenuItem.Name = "ChangeFieldsToTitleCaseToolStripMenuItem"
         Me.ChangeFieldsToTitleCaseToolStripMenuItem.Size = New System.Drawing.Size(215, 22)
         Me.ChangeFieldsToTitleCaseToolStripMenuItem.Text = "Change title case (flagged)"
+        '
+        'lblFilteredCount
+        '
+        Me.lblFilteredCount.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.lblFilteredCount.AutoSize = True
+        Me.lblFilteredCount.Location = New System.Drawing.Point(972, 46)
+        Me.lblFilteredCount.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.lblFilteredCount.Name = "lblFilteredCount"
+        Me.lblFilteredCount.Size = New System.Drawing.Size(0, 16)
+        Me.lblFilteredCount.TabIndex = 5
+        '
+        'StatusStrip1
+        '
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblStatusLabel1, Me.prgStatusBar})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 552)
+        Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Size = New System.Drawing.Size(1154, 22)
+        Me.StatusStrip1.TabIndex = 7
+        Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'lblStatusLabel1
+        '
+        Me.lblStatusLabel1.Name = "lblStatusLabel1"
+        Me.lblStatusLabel1.Size = New System.Drawing.Size(0, 17)
+        '
+        'prgStatusBar
+        '
+        Me.prgStatusBar.Name = "prgStatusBar"
+        Me.prgStatusBar.Size = New System.Drawing.Size(400, 16)
+        Me.prgStatusBar.Visible = False
+        '
+        'cboFilterColumn
+        '
+        Me.cboFilterColumn.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cboFilterColumn.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboFilterColumn.FormattingEnabled = True
+        Me.cboFilterColumn.Items.AddRange(New Object() {"(all columns)", "Journal name", "Publisher", "ISSN1", "Source", "Ranking", "Rating", "H-Index", "Country", "Categories", "Areas", "Notes"})
+        Me.cboFilterColumn.Location = New System.Drawing.Point(763, 40)
+        Me.cboFilterColumn.Name = "cboFilterColumn"
+        Me.cboFilterColumn.Size = New System.Drawing.Size(140, 24)
+        Me.cboFilterColumn.TabIndex = 8
+        '
+        'Label2
+        '
+        Me.Label2.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(703, 46)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(55, 16)
+        Me.Label2.TabIndex = 9
+        Me.Label2.Text = "Column:"
+        '
+        'cboMatchType
+        '
+        Me.cboMatchType.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.cboMatchType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cboMatchType.FormattingEnabled = True
+        Me.cboMatchType.Items.AddRange(New Object() {"Match all", "Match any"})
+        Me.cboMatchType.Location = New System.Drawing.Point(590, 40)
+        Me.cboMatchType.Name = "cboMatchType"
+        Me.cboMatchType.Size = New System.Drawing.Size(106, 24)
+        Me.cboMatchType.TabIndex = 11
         '
         'MainForm
         '
@@ -447,7 +440,6 @@ Partial Class MainForm
     Friend WithEvents cboMatchType As ComboBox
     Friend WithEvents MatchSelectedJournalNameToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExitWithoutSavingToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents Column15 As DataGridViewCheckBoxColumn
     Friend WithEvents Column1 As DataGridViewTextBoxColumn
     Friend WithEvents Column2 As DataGridViewTextBoxColumn
