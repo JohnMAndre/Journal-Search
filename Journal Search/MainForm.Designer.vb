@@ -66,6 +66,8 @@ Partial Class MainForm
         Me.cboFilterColumn = New System.Windows.Forms.ComboBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.cboMatchType = New System.Windows.Forms.ComboBox()
+        Me.DataCleanupToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         CType(Me.dgvData, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -245,7 +247,7 @@ Partial Class MainForm
         '
         'EditToolStripMenuItem
         '
-        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportUpdateDatabaseToolStripMenuItem, Me.AddOneEntryToolStripMenuItem, Me.ClearFilterToolStripMenuItem, Me.MatchSelectedJournalNameToolStripMenuItem})
+        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportUpdateDatabaseToolStripMenuItem, Me.AddOneEntryToolStripMenuItem, Me.ClearFilterToolStripMenuItem, Me.MatchSelectedJournalNameToolStripMenuItem, Me.ToolStripSeparator1, Me.DataCleanupToolStripMenuItem})
         Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
         Me.EditToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
         Me.EditToolStripMenuItem.Text = "&Data"
@@ -386,6 +388,17 @@ Partial Class MainForm
         Me.cboMatchType.Size = New System.Drawing.Size(106, 24)
         Me.cboMatchType.TabIndex = 11
         '
+        'DataCleanupToolStripMenuItem
+        '
+        Me.DataCleanupToolStripMenuItem.Name = "DataCleanupToolStripMenuItem"
+        Me.DataCleanupToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.DataCleanupToolStripMenuItem.Text = "&Data cleanup"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(269, 6)
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
@@ -460,4 +473,6 @@ Partial Class MainForm
     Friend WithEvents LaunchInfoURLToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents LaunchSubmitURLToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ChangeFieldsToTitleCaseToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents DataCleanupToolStripMenuItem As ToolStripMenuItem
 End Class

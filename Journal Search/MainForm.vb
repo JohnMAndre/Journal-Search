@@ -764,14 +764,32 @@ Public Class MainForm
     End Sub
 
     Private Sub ChangeFieldsToTitleCaseToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeFieldsToTitleCaseToolStripMenuItem.Click
+        MessageBox.Show("not implemented yet.")
         '-- Change "JOURNAL OF FINANCIAL ECONOMICS" to "Journal of Financial Economics" but do for all fields for flagged journals
     End Sub
 
     Private Sub LaunchInfoURLToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LaunchInfoURLToolStripMenuItem.Click
+        MessageBox.Show("not implemented yet.")
         'System.Diagnostics.Process.Start()
     End Sub
 
     Private Sub LaunchSubmitURLToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LaunchSubmitURLToolStripMenuItem.Click
+        MessageBox.Show("not implemented yet.")
         'System.Diagnostics.Process.Start()
+    End Sub
+
+    Private Sub DataCleanupToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DataCleanupToolStripMenuItem.Click
+        '-- Go through all the journal names and replace & with "and" then replace "&amp;" with "and"
+        Dim intCounter As Integer
+        If MessageBox.Show("this will replace all '&' and '&amp;' with 'and' - are you sure you want this?", Application.ProductName, MessageBoxButtons.YesNoCancel) = DialogResult.Yes Then
+            For Each entry As Entry In JournalList
+                If entry.JournalName.Contains("&") OrElse entry.JournalName.Contains("&amp;") Then
+                    intCounter += 1
+                End If
+                entry.JournalName = entry.JournalName.Replace("&", "and")
+                entry.JournalName = entry.JournalName.Replace("&amp;", "and")
+            Next
+        End If
+        MessageBox.Show("Entries updated: " & intCounter.ToString("#,##0"))
     End Sub
 End Class
