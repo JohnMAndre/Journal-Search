@@ -98,25 +98,25 @@ Public Class MainForm
             xUserEntered = xDoc2.CreateElement("JournalNote")
             boolAddUserEnteredData = False '-- default to not adding
 
-            element1.SetAttribute("JournalName", obj.JournalName)
-            element1.SetAttribute("PublisherName", obj.PublisherName)
-            element1.SetAttribute("ISSNs", obj.ISSNs)
-            element1.SetAttribute("Source", obj.Source)
-            element1.SetAttribute("Ranking", obj.Ranking)
-            element1.SetAttribute("Rating", obj.Rating)
-            element1.SetAttribute("HIndex", obj.HIndex)
-            element1.SetAttribute("Country", obj.Country)
-            element1.SetAttribute("Categories", obj.Categories)
-            element1.SetAttribute("Areas", obj.Areas)
+            element1.SetAttribute("JournalName", GetDecodedText(obj.JournalName))
+            element1.SetAttribute("PublisherName", GetDecodedText(obj.PublisherName))
+            element1.SetAttribute("ISSNs", GetDecodedText(obj.ISSNs))
+            element1.SetAttribute("Source", GetDecodedText(obj.Source))
+            element1.SetAttribute("Ranking", GetDecodedText(obj.Ranking))
+            element1.SetAttribute("Rating", GetDecodedText(obj.Rating))
+            element1.SetAttribute("HIndex", GetDecodedText(obj.HIndex))
+            element1.SetAttribute("Country", GetDecodedText(obj.Country))
+            element1.SetAttribute("Categories", GetDecodedText(obj.Categories))
+            element1.SetAttribute("Areas", GetDecodedText(obj.Areas))
 
             root1.AppendChild(element1)
 
 
             '-- Notes and other user-entered info in alternate file
-            xUserEntered.SetAttribute("JournalName", obj.JournalName)
+            xUserEntered.SetAttribute("JournalName", GetDecodedText(obj.JournalName))
 
             If obj.InfoURL IsNot Nothing AndAlso obj.InfoURL.Length > 0 Then
-                xInfoURL = xUserEntered.AppendChild(xDoc2.CreateElement("InfoURL"))
+                xInfoURL = xUserEntered.AppendChild(xDoc2.CreateElement("InfoURL")) '-- don't decode these, because & is important in URLs
                 xInfoURL.InnerText = obj.InfoURL
                 boolAddUserEnteredData = True
             End If
@@ -590,6 +590,9 @@ Public Class MainForm
     End Function
     Private Sub ApplyFilter()
         Try
+            '-- First, replace often coded words
+            txtFilter.Text = txtFilter.Text.Replace("&", "and")
+
             Dim lstFiltered As List(Of Entry)
             Select Case cboFilterColumn.SelectedIndex
                 Case SearchColumnEnum.AllColumns

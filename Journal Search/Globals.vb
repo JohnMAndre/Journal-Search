@@ -26,7 +26,12 @@ Module Globals
     End Enum
 #End Region
 
+    Public Function GetDecodedText(codedText As String) As String
+        Dim strReturn As String = codedText.Trim()
+        strReturn = strReturn.Replace("&", "and")
 
+        Return strReturn
+    End Function
     Public Sub AddNotesToJournals(journals As List(Of Entry))
         '--  add the notes from the notes file
         Dim xDoc As New Xml.XmlDocument()

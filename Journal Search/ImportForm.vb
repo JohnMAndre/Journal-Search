@@ -34,7 +34,7 @@
                 row = strRows(intCounter).Split(vbTab)
 
                 If row.Length >= 1 Then
-                    obj.JournalName = row(0).Trim()
+                    obj.JournalName = GetDecodedText(row(0))
                 End If
 
                 If obj.JournalName.ToLower() = JournalNameColumn.HeaderText.ToLower() Then
@@ -42,31 +42,31 @@
                 End If
 
                 If row.Length >= 2 Then
-                    obj.PublisherName = row(1).Trim()
+                    obj.PublisherName = GetDecodedText(row(1))
                 End If
                 If row.Length >= 3 Then
-                    obj.ISSNs = row(2).Trim()
+                    obj.ISSNs = GetDecodedText(row(2))
                 End If
                 If row.Length >= 4 Then
-                    obj.Source = row(3).Trim()
+                    obj.Source = GetDecodedText(row(3))
                 End If
                 If row.Length >= 5 Then
-                    obj.Ranking = row(4).Trim()
+                    obj.Ranking = GetDecodedText(row(4))
                 End If
                 If row.Length >= 6 Then
-                    obj.Rating = row(5).Trim()
+                    obj.Rating = GetDecodedText(row(5))
                 End If
                 If row.Length >= 7 Then
-                    obj.HIndex = row(6).Trim()
+                    obj.HIndex = GetDecodedText(row(6))
                 End If
                 If row.Length >= 8 Then
-                    obj.Country = row(7).Trim()
+                    obj.Country = GetDecodedText(row(7))
                 End If
                 If row.Length >= 9 Then
-                    obj.Categories = row(8).Trim()
+                    obj.Categories = GetDecodedText(row(8))
                 End If
                 If row.Length >= 10 Then
-                    obj.Areas = row(9).Trim()
+                    obj.Areas = GetDecodedText(row(9))
                 End If
 
 
