@@ -41,9 +41,14 @@ Module Globals
             xDoc.Load("JournalSearchDataExtra.xml")
             xList = xDoc.SelectNodes("//JournalNote")
             Dim strName As String
-            Dim strNotes, strInfoURL, strSubmitURL, strSubmitHistory, strAPC, strSubmitFee As String
 
             For Each xElement As XmlElement In xList
+                Dim strNotes As String = String.Empty
+                Dim strInfoURL As String = String.Empty
+                Dim strSubmitURL As String = String.Empty
+                Dim strSubmitHistory As String = String.Empty
+                Dim strAPC As String = String.Empty
+                Dim strSubmitFee As String = String.Empty
                 strName = xElement.GetAttribute("JournalName").ToLower()
                 If xElement.HasChildNodes AndAlso xElement.ChildNodes(0).NodeType = XmlNodeType.Element Then
                     '-- New logic holding more variables beside just Notes
@@ -87,6 +92,7 @@ Module Globals
                            obj.JournalName.Replace(DISCONTINUED_IDENTIFIER, String.Empty).ToLower() = strName.Replace(DISCONTINUED_IDENTIFIER, String.Empty) Then
                             obj.Notes = strNotes
                             obj.APC = strAPC
+                            obj.SubmitFee = strSubmitFee
                             obj.SubmitHistory = strSubmitHistory
                             obj.SubmitURL = strSubmitURL
                             obj.InfoURL = strInfoURL

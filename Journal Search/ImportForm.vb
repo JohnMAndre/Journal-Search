@@ -10,6 +10,7 @@
             Dim strRows() As String
             Dim obj As Entry
             dgvData.DataSource = Nothing
+            m_lstTemp.Clear()
 
             Dim strClipboard As String = Clipboard.GetText()
             If strClipboard Is Nothing Then

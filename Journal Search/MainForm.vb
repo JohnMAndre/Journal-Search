@@ -89,7 +89,7 @@ Public Class MainForm
         Dim xDoc2 As New Xml.XmlDocument()
         Dim root1 As Xml.XmlElement = xDoc1.AppendChild(xDoc1.CreateElement("Journals"))
         Dim root2 As Xml.XmlElement = xDoc2.AppendChild(xDoc2.CreateElement("JournalNotes"))
-        Dim element1, xUserEntered, xInfoURL, xSubmitURL, xSubmitHistory, xAPC, xNotes As Xml.XmlElement
+        Dim element1, xUserEntered, xInfoURL, xSubmitURL, xSubmitHistory, xSubmitFee, xAPC, xNotes As Xml.XmlElement
         Dim boolAddUserEnteredData As Boolean
 
         For Each obj As Entry In JournalList
@@ -130,6 +130,12 @@ Public Class MainForm
             If obj.SubmitHistory IsNot Nothing AndAlso obj.SubmitHistory.Length > 0 Then
                 xSubmitHistory = xUserEntered.AppendChild(xDoc2.CreateElement("SubmitHistory"))
                 xSubmitHistory.InnerText = obj.SubmitHistory
+                boolAddUserEnteredData = True
+            End If
+
+            If obj.SubmitFee IsNot Nothing AndAlso obj.SubmitFee.Length > 0 Then
+                xSubmitFee = xUserEntered.AppendChild(xDoc2.CreateElement("SubmitFee"))
+                xSubmitFee.InnerText = obj.SubmitFee
                 boolAddUserEnteredData = True
             End If
 
@@ -632,7 +638,9 @@ Public Class MainForm
 
     Private Sub dgvData_KeyDown(sender As Object, e As KeyEventArgs) Handles dgvData.KeyDown
         If e.KeyCode = Keys.C AndAlso ModifierKeys = ModifierKeys.Control Then
-            Clipboard.SetText(dgvData.CurrentCell.Value)
+            If dgvData.CurrentCell IsNot Nothing AndAlso dgvData.CurrentCell.Value IsNot Nothing Then
+                Clipboard.SetText(dgvData.CurrentCell.Value.ToString())
+            End If
         End If
     End Sub
 
@@ -686,7 +694,7 @@ Public Class MainForm
                         cmp = New EntryCompareByJournalName
                     Case "PublisherName"
                         cmp = New EntryCompareByPublisherName
-                    Case "ISSN1"
+                    Case "ISSNs"
                         cmp = New EntryCompareByISSNs
                     Case "Source"
                         cmp = New EntryCompareBySource
