@@ -24,6 +24,7 @@ class JournalEntry:
     submit_fee: str = ""
     apc: str = ""
     notes: str = ""
+    last_updated: str = ""
 
     @staticmethod
     def normalize(text: str | None) -> str:
@@ -50,6 +51,7 @@ class JournalEntry:
             submit_fee=cls.normalize(str(row["submit_fee"] or "")),
             apc=cls.normalize(str(row["apc"] or "")),
             notes=cls.normalize(str(row["notes"] or "")),
+            last_updated=cls.normalize(str(row["last_updated"] or "")),
         )
 
 

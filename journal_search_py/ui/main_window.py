@@ -262,6 +262,7 @@ class MainWindow(tk.Tk):
             entry.submit_history,
             entry.apc,
             entry.notes,
+            entry.last_updated,
         )
 
     def _row_tags(self, entry: JournalEntry) -> tuple[str, ...]:
@@ -473,7 +474,7 @@ class MainWindow(tk.Tk):
         self.apply_filter()
 
     def minisize_columns(self) -> None:
-        widths = [40, 250, 220, 120, 120, 60, 60, 60, 110, 450, 250, 180, 180, 180, 100, 250]
+        widths = [40, 250, 220, 120, 120, 60, 60, 60, 110, 450, 250, 180, 180, 180, 100, 250, 120]
         for idx, (key, _, _) in enumerate(COLUMN_DEFS):
             self.tree.column(key, width=widths[idx])
 

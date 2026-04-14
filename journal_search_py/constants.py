@@ -22,6 +22,7 @@ COLUMN_DEFS = [
     ("submit_history", "SubmitHistory", 180),
     ("apc", "APC", 100),
     ("notes", "Notes", 260),
+    ("last_updated", "Last updated", 120),
 ]
 
 FILTER_COLUMNS = [
@@ -37,6 +38,7 @@ FILTER_COLUMNS = [
     ("categories", "Categories"),
     ("areas", "Areas"),
     ("notes", "Notes"),
+    ("last_updated", "Last updated"),
 ]
 
 SEARCHABLE_COLUMNS = [
@@ -51,6 +53,7 @@ SEARCHABLE_COLUMNS = [
     "categories",
     "areas",
     "notes",
+    "last_updated",
 ]
 
 IMPORT_COLUMNS = [

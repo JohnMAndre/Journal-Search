@@ -87,7 +87,7 @@ class ImportDialog(tk.Toplevel):
         self.source_entry.grid(row=0, column=1, sticky="ew", padx=8)
         ttk.Label(
             bottom,
-            text="(all existing data from this source will be deleted before importing this data)",
+            text="(existing journals from this source will be updated; extra fields are preserved)",
         ).grid(row=0, column=2, sticky="w")
 
         self.import_btn = ttk.Button(bottom, text="Import", command=self.run_import, state="disabled")
